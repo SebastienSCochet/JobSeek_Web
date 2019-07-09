@@ -5,13 +5,10 @@
   margin-right: 15px;
 }
 
-.link {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  color: #007bff;
+a {
+  text-decoration: none;
 }
 
-.link:hover {
-  text-decoration-line: none;
+.box {
+  display: inline;
 }
