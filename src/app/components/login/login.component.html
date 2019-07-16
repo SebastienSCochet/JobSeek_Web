@@ -1,3 +1,16 @@
+<h1 class="text-center">Connectez-vous</h1>
+<form class="border p-5" method="post" [formGroup]="loginForm" >
+  <label for="email">Adresse e-mail</label>
+  <input type="email" formControlName="email" name="email" id="email" class="form-control">
+  <div class="alert alert-danger" *ngIf="email.invalid && email.touched" >
+    <div *ngIf="!email.value">L'adresse e-mail est requise.</div>
+    <div *ngIf="email.dirty">Veuillez entrer une adresse valide.</div>
+  </div>
 
-<input type="text" [formControl]="username">
-<input type="password" [formControl]="password">
+  <label class="mt-4" for="password">Mot de passe</label>
+  <input type="password" formControlName="password" id="password" class="form-control" >
+  <div class="alert alert-danger" *ngIf="password.touched && password.invalid" >Le mot de passe est requis.</div>
+
+  <button (click)="connect()" [disabled]="email.invalid || password.invalid" class="btn mx-auto d-block btn-primary">Connexion</button>
+  <a routerLink="/sign-up" routerLinkActive="active"><p class="mt-3 text-center" >Pas encore inscrit ?</p></a>
+</form>
