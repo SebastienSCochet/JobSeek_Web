@@ -1,5 +1,6 @@
 import {Address} from './address';
 import {Coordinate} from './coordinate';
+import {Preference} from "./preference";
 
 export class User {
   idUser: number;
@@ -11,4 +12,5 @@ export class User {
   avatarUrl: string;
   coordinate: Coordinate;
   address: Address;
+  preference: Preference;
 }

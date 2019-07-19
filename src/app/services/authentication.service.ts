@@ -12,6 +12,11 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Try to authenticate, store the token in the local database and return the status code of the request.
+   * @param loginRequest credentials
+   * @return status code
+   */
   public authenticate(loginRequest: LoginRequest) {
     return this.http.post<LoginResponse>(`${REST_DOMAIN}/auth/login`, loginRequest, {observe: 'response'});
   }

@@ -1,30 +1,31 @@
 <h1>Inscription</h1>
+<p>Veuillez remplir tous les champs.</p>
 
 <form class="my-5" [formGroup]="signUpForm" >
 
-    <div class="form-row">
-      <div class="form-group col-md-4">
-        <label for="inputFirstname">Prénom</label>
-        <input type="text" class="form-control" id="inputFirstname" placeholder="Prénom" formControlName="firstName" [(ngModel)]="user.firstname">
-        <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched" >Ce champ est requis.</div>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputLastname">Nom</label>
-        <input type="text" class="form-control" id="inputLastname" placeholder="Nom" formControlName="lastName" [(ngModel)]="user.lastname">
-        <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.touched" >Ce champ est requis.</div>
-      </div>
-      <div class="form-group col-md-4">
-        <label for="inputLastname">Date de naissance</label>
-        <input type="date" class="form-control" id="inputBirth" placeholder="Date de naissance (dd-mm-yyyy)" formControlName="birth" [(ngModel)]="user.birth">
-        <div class="alert alert-danger" *ngIf="birth.invalid && birth.touched" >
-          <div *ngIf="!birth.value">Ce champ est requis.</div>
-        </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="inputFirstname">Prénom</label>
+      <input type="text" class="form-control" id="inputFirstname" formControlName="firstName" [(ngModel)]="user.firstname">
+      <div class="alert alert-danger" *ngIf="firstName.invalid && firstName.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputLastname">Nom</label>
+      <input type="text" class="form-control" id="inputLastname" formControlName="lastName" [(ngModel)]="user.lastname">
+      <div class="alert alert-danger" *ngIf="lastName.invalid && lastName.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="inputLastname">Date de naissance</label>
+      <input type="date" class="form-control" id="inputBirth" placeholder="Date de naissance (dd/mm/yyyy)" formControlName="birth" [(ngModel)]="user.birth">
+      <div class="alert alert-danger" *ngIf="birth.invalid && birth.touched" >
+        <div *ngIf="!birth.value">Ce champ est requis.</div>
       </div>
     </div>
+  </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail">E-mail</label>
-      <input type="email" class="form-control" id="inputEmail" placeholder="E-mail" formControlName="email" [(ngModel)]="user.email">
+      <input type="email" class="form-control" id="inputEmail" formControlName="email" [(ngModel)]="user.email">
       <div class="alert alert-danger" *ngIf="email.invalid && email.touched" >
         <div *ngIf="!email.value">Ce champ est requis.</div>
         <div *ngIf="email.dirty">Veuillez entrer une adresse valide.</div>
@@ -32,7 +33,7 @@
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword">Mot de passe</label>
-      <input type="password" class="form-control" id="inputPassword" placeholder="Mot de passe" formControlName="password" [(ngModel)]="user.password">
+      <input type="password" class="form-control" id="inputPassword" formControlName="password" [(ngModel)]="user.password">
       <div class="alert alert-danger" *ngIf="password.invalid && password.touched" >Ce champ est requis.</div>
     </div>
   </div>
@@ -46,7 +47,10 @@
     <div class="form-group col-md-3">
       <label for="inputNumber">Numéro</label>
       <input type="number" class="form-control" id="inputNumber" formControlName="number" [(ngModel)]="user.address.number">
-      <div class="alert alert-danger" *ngIf="number.invalid && number.touched" >Ce champ est requis.</div>
+      <div class="alert alert-danger" *ngIf="number.invalid && number.touched" >
+        <div *ngIf="!number.value">Ce champ est requis.</div>
+        <div *ngIf="number.value">Numéro de rue invalide.</div>
+      </div>
     </div>
   </div>
 
@@ -58,8 +62,11 @@
     </div>
     <div class="form-group col-md-2">
       <label for="inputPostalCode">Code postal</label>
-      <input type="text" class="form-control" id="inputPostalCode" formControlName="postalCode" [(ngModel)]="user.address.postalCode">
-      <div class="alert alert-danger" *ngIf="postalCode.invalid && postalCode.touched" >Ce champ est requis.</div>
+      <input type="number" class="form-control" id="inputPostalCode" formControlName="postalCode" [(ngModel)]="user.address.postalCode">
+      <div class="alert alert-danger" *ngIf="postalCode.invalid && postalCode.touched" >
+        <div *ngIf="!postalCode.value">Ce champ est requis.</div>
+        <div *ngIf="postalCode.value">Code postal invalide.</div>
+      </div>
     </div>
     <div class="form-group col-md-4">
       <label for="inputState">Pays</label>
@@ -69,6 +76,16 @@
       <div class="alert alert-danger" *ngIf="country.invalid && country.touched" >Ce champ est requis.</div>
     </div>
   </div>
-  <button type="submit" [disabled]="signUpForm.invalid" class=" my-4 btn btn-block btn-primary" (click)="signUp()">S'enregistrer</button>
-  <button type="submit" class="btn btn-block">Annuler</button>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputCategory">Catégorie d'emploi</label>
+      <select id="inputCategory" class="form-control" [(ngModel)]="user.preference.category" formControlName="category">
+        <option *ngFor="let category of categoriesAvailable" [ngValue]="category" selected>{{ category.label }}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="!category.dirty && category.touched" >Ce champ est requis.</div>
+      <div class="alert alert-info">Ce paramètre pourra être modifié ultérieurement.</div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="signUpForm.invalid || !category.dirty" class=" my-4 btn btn-block btn-primary" (click)="signUp()">S'enregistrer</button>
+  <button type="submit" class="btn btn-block" (click)="redirectToLogin()" >Annuler</button>
 </form>

@@ -13,4 +13,5 @@
 
   <button (click)="connect()" [disabled]="email.invalid || password.invalid" class="btn mx-auto d-block btn-primary">Connexion</button>
   <a routerLink="/sign-up" routerLinkActive="active"><p class="mt-3 text-center" >Pas encore inscrit ?</p></a>
+  <div class="alert alert-danger" *ngIf="failureMessage">{{failureMessage}}</div>
 </form>

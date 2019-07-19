@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  failureMessage: string;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -37,12 +38,18 @@ export class LoginComponent implements OnInit {
       this.authenticationService.authenticate(credentials)
         .subscribe(
           response => {
-            if (response.status === 200) {
-              if (response.body.token) {
-                localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
-                this.router.navigate(['/job-offers']);
-              }
+            switch (response.status) {
+              case 200 :
+                if (response.body.token) {
+                  localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
+                  this.router.navigate(['/job-offers']);
+                }
+                break;
+              case 401 : this.failureMessage = 'Identifiants incorrects.'; break;
+              case 500 : this.failureMessage = 'Une erreur est survenue. Veuillez réessayer plus tard.'; break;
+              default : this.failureMessage = `Code d'erreur : ${response.status}`;
             }
+
           }
         );
     }
