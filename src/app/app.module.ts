@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AntiAuthGuard} from './guard/anti-auth.guard';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ProfilComponent } from './components/profil/profil.component';
+import { SearchCriteriaComponent } from './components/search-criteria/search-criteria.component';
 
 
 
@@ -29,7 +30,8 @@ import { ProfilComponent } from './components/profil/profil.component';
     JobSeekComponent,
     PageNotFoundComponent,
     SignUpComponent,
-    ProfilComponent
+    ProfilComponent,
+    SearchCriteriaComponent
   ],
   imports: [
     BrowserModule,
