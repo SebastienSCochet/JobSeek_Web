@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {LoginRequest} from '../payload/login-request';
 import {REST_DOMAIN} from '../model/constants';
 import {LoginResponse} from '../payload/login-response';
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -21,15 +22,9 @@ export class AuthenticationService {
     return this.http.post<LoginResponse>(`${REST_DOMAIN}/auth/login`, loginRequest, {observe: 'response'});
   }
 
-  public isConnected() {
-    let authenticated = false;
+  public isConnected(): Observable<boolean> {
     const token = localStorage.getItem('token').slice(7);
-
-    this.http.post<boolean>(`${REST_DOMAIN}/auth/tokens`, token).subscribe(
-      connected => authenticated = connected
-    );
-
-    return authenticated;
+    return this.http.post<boolean>(`${REST_DOMAIN}/auth/tokens`, token);
   }
 
   public disconnect() {
@@ -37,4 +32,7 @@ export class AuthenticationService {
   }
 
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
 }

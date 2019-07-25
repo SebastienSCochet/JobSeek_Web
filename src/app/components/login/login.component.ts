@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
-  failureMessage: string;
+  private loginForm: FormGroup;
+  private failureMessage: string;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       this.authenticationService.authenticate(credentials)
         .subscribe(
           response => {
+            console.log(response.status);
             switch (response.status) {
               case 200 :
                 if (response.body.token) {
@@ -49,7 +50,6 @@ export class LoginComponent implements OnInit {
               case 500 : this.failureMessage = 'Une erreur est survenue. Veuillez réessayer plus tard.'; break;
               default : this.failureMessage = `Code d'erreur : ${response.status}`;
             }
-
           }
         );
     }

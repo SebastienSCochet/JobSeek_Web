@@ -1,6 +1,27 @@
-<form>
+<form class="border ml-5 mr-5 mb-5" [formGroup]="criteriaForm">
   <div class="form-group">
-    <label for="i-enterprise">Entreprise</label>
-    <input type="text" class="form-control" id="i-enterprise" name="i-enterprise"/>
+    <label for="keyword">Mots-clés</label>
+    <input type="text" class="form-control" id="keyword" name="keyword" formControlName="keyword"/>
   </div>
+  <div class="form-group">
+    <label for="enterprise">Entreprise</label>
+    <input type="text" class="form-control" id="enterprise" name="enterprise" formControlName="enterprise"/>
+  </div>
+  <hr/>
+  <h6>Préferences</h6>
+  <div class="form-group">
+    <label for="distance">Distance max.</label>
+    <input type="number" class="form-control" id="distance" name="distance" formControlName="distance" />
+  </div>
+  <div class="form-group">
+    <label for="salary">Salaire min.</label>
+    <input type="text" class="form-control" id="salary" name="salary" formControlName="salary"/>
+  </div>
+  <div class="form-group">
+    <label for="category">Catégorie</label>
+    <select id="category" class="form-control" name="category" formControlName="category">
+      <option *ngFor="let category of categories" [ngValue]="category">{{ category.label }}</option>
+    </select>
+  </div>
+    <button (click)="search()" type="button" class="btn btn-block btn-primary">Rechercher</button>
 </form>

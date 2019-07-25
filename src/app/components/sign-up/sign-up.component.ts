@@ -8,7 +8,7 @@ import {Category} from '../../model/category';
 import {CategoriesService} from '../../services/categories.service';
 import {Preference} from '../../model/preference';
 import {AuthenticationService} from '../../services/authentication.service';
-import {LoginRequest} from "../../payload/login-request";
+import {LoginRequest} from '../../payload/login-request';
 
 @Component({
   selector: 'app-sign-up',

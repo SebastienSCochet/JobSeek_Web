@@ -11,7 +11,7 @@ export class JobOffersService {
 
   constructor(private http: HttpClient) { }
 
-  findAll(): Observable<JobOffer[]> {
-    return this.http.get<JobOffer[]>(`${REST_DOMAIN}/offers`);
+  findPreferredOffers(keyword: string): Observable<JobOffer[]> {
+    return this.http.get<JobOffer[]>(`${REST_DOMAIN}/job-offers?keyword=${keyword}`);
   }
 }
