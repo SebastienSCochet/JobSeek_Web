@@ -21,6 +21,7 @@ export class SignUpComponent implements OnInit {
   private signUpForm: FormGroup;
   private user: User;
   private categoriesAvailable: Category[];
+  private countries: string[] = ['Belgique'];
 
   constructor(private usersService: UsersService,
               private categoriesService: CategoriesService,
@@ -67,7 +68,7 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.min(1000)
       ]],
-      country: ['', [
+      country: [ 'Belgique' , [
         Validators.required
       ]],
       category: ['', [

@@ -12,16 +12,11 @@ import {Observable} from "rxjs";
 })
 export class JobOffersGridComponent implements OnInit {
 
-  @Input() private jobOffersObs: Observable<JobOffer[]>;
-  private offers: JobOffer[];
+  @Input() private jobOffers: JobOffer[];
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.jobOffersObs.subscribe(offers => {
-      this.offers = offers;
-      console.log(offers);
-    });
   }
 
   detail(idJobOffer: number) {
