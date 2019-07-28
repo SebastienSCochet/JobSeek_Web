@@ -1,5 +1,5 @@
 <h1 class="text-center">Connectez-vous</h1>
-<form class="border p-5" method="post" [formGroup]="loginForm" >
+<form class="border p-5" (ngSubmit)="connect()" [formGroup]="loginForm" >
   <label for="email">Adresse e-mail</label>
   <input type="email" formControlName="email" name="email" id="email" class="form-control">
   <div class="alert alert-danger" *ngIf="email.invalid && email.touched" >
@@ -11,7 +11,7 @@
   <input type="password" formControlName="password" id="password" class="form-control" >
   <div class="alert alert-danger" *ngIf="password.touched && password.invalid" >Le mot de passe est requis.</div>
 
-  <button (click)="connect()" [disabled]="email.invalid || password.invalid" class="btn mx-auto d-block btn-primary" type="button">Connexion</button>
+  <button (click)="connect()" [disabled]="email.invalid || password.invalid" class="btn mx-auto d-block btn-primary" type="submit">Connexion</button>
   <a routerLink="/sign-up" routerLinkActive="active"><p class="mt-3 text-center" >Pas encore inscrit ?</p></a>
-  <div class="alert alert-danger" *ngIf="failureMessage">{{failureMessage}}</div>
+  <div class="alert alert-danger text-center" *ngIf="failureMessage">{{failureMessage}}</div>
 </form>

@@ -14,4 +14,8 @@ export class UsersService {
   signUp(user: User): Observable<User> {
     return this.http.post<User>(`${REST_DOMAIN}/users`, user);
   }
+
+  getConnectedUser(): Observable<User> {
+    return this.http.get<User>(`${REST_DOMAIN}/users`);
+  }
 }

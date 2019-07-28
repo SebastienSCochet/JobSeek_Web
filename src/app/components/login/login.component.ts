@@ -33,22 +33,29 @@ export class LoginComponent implements OnInit {
 
   connect() {
     if (this.email.value && this.password.value) {
+      console.log(this.email.value);
+      console.log(this.password.value);
+
       const credentials: LoginRequest = new LoginRequest(this.email.value, this.password.value);
 
+      console.log('Procédure d\'identification');
       this.authenticationService.authenticate(credentials)
         .subscribe(
           response => {
-            console.log(response.status);
-            switch (response.status) {
-              case 200 :
-                if (response.body.token) {
-                  localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
-                  this.router.navigate(['/job-offers']);
-                }
+            if (response.body.token) {
+              localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
+              this.router.navigate(['/job-offers']);
+            }
+          }, error => {
+            switch (error.status) {
+              case 401 : {
+                this.failureMessage = 'Identifiants incorrects.';
                 break;
-              case 401 : this.failureMessage = 'Identifiants incorrects.'; break;
-              case 500 : this.failureMessage = 'Une erreur est survenue. Veuillez réessayer plus tard.'; break;
-              default : this.failureMessage = `Code d'erreur : ${response.status}`;
+              }
+
+              default : {
+                this.failureMessage = `Une erreur est survenue. Veuillez réessayer plus tard.`;
+              }
             }
           }
         );

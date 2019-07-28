@@ -5,6 +5,7 @@ import {JobOffersService} from '../../services/job-offers.service';
 import {Observable} from 'rxjs';
 import {JobOffer} from '../../model/job-offer';
 import {Search} from '../../model/search';
+import {NavigationTab} from '../../enumeration/navigation-tab';
 
 @Component({
   selector: 'app-job-seek',
@@ -15,6 +16,7 @@ export class JobSeekComponent implements OnInit {
 
   private userPreferenceObs: Observable<Preference>;
   private jobOffers: JobOffer[];
+  private gridTab = true;
 
   constructor(private preferencesService: PreferencesService,
               private jobOffersService: JobOffersService) { }
@@ -27,4 +29,7 @@ export class JobSeekComponent implements OnInit {
     this.jobOffersService.findOffersBySearch(search).subscribe(o => this.jobOffers = o);
   }
 
+  changeTab(tab: NavigationTab) {
+    this.gridTab = tab === NavigationTab.GRID;
+  }
 }

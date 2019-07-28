@@ -1,6 +1,7 @@
 import {Address} from './address';
 import {Coordinate} from './coordinate';
-import {Preference} from "./preference";
+import {Preference} from './preference';
+import {Role} from './role';
 
 export class User {
   idUser: number;
@@ -13,4 +14,5 @@ export class User {
   coordinate: Coordinate;
   address: Address;
   preference: Preference;
+  role: Role;
 }

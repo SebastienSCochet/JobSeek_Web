@@ -1,12 +1,12 @@
 
 <div class="row">
   <div class="img-group d-inline-flex flex-nowrap justify-content-between align-items-start w-25 mx-auto">
-    <div class="tab">
-      <img id="img-work" src="https://image.flaticon.com/icons/svg/1243/1243560.svg" />
+    <div class="tab" (click)="changeTab(events[0])">
+      <img [class.actived]="isActive(events[0])" id="img-work" src="https://image.flaticon.com/icons/svg/1243/1243560.svg" />
       <p>Offres d'emploi</p>
     </div>
-    <div class="tab">
-      <img id="img-map" src="https://image.flaticon.com/icons/svg/149/149223.svg" />
+    <div class="tab" (click)="changeTab(events[1])">
+      <img [class.actived]="isActive(events[1])" id="img-map" src="https://image.flaticon.com/icons/svg/149/149223.svg" />
       <p class="text-center">Carte</p>
     </div>
   </div>

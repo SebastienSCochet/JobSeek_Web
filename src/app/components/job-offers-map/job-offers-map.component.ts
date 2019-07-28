@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {JobOffer} from '../../model/job-offer';
 
 @Component({
   selector: 'app-job-offers-map',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./job-offers-map.component.scss']
 })
 export class JobOffersMapComponent implements OnInit {
+
+  @Input() private jobOffers: JobOffer[];
 
   constructor() { }
 

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {LoginRequest} from '../payload/login-request';
 import {REST_DOMAIN} from '../model/constants';
 import {LoginResponse} from '../payload/login-response';
-import {Observable} from "rxjs";
+import {Observable, of} from 'rxjs';
 
 
 @Injectable({
@@ -18,13 +18,18 @@ export class AuthenticationService {
    * @param loginRequest credentials
    * @return status code
    */
-  public authenticate(loginRequest: LoginRequest) {
+  public authenticate(loginRequest: LoginRequest): Observable<HttpResponse<LoginResponse>> {
     return this.http.post<LoginResponse>(`${REST_DOMAIN}/auth/login`, loginRequest, {observe: 'response'});
   }
 
   public isConnected(): Observable<boolean> {
-    const token = localStorage.getItem('token').slice(7);
-    return this.http.post<boolean>(`${REST_DOMAIN}/auth/tokens`, token);
+    let token = localStorage.getItem('token');
+    if (token != null) {
+      token = token.slice(7);
+      return this.http.post<boolean>(`${REST_DOMAIN}/auth/tokens`, token);
+    } else {
+      return of(false);
+    }
   }
 
   public disconnect() {

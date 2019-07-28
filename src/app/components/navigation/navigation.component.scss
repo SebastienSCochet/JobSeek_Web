@@ -11,10 +11,11 @@ img:hover {
   transition-duration: 0.5s;
 }
 
-img:active {
+.actived {
   background-color: #89C4F4;
 }
 
 .tab {
   text-align: center;
+  cursor: pointer;
 }

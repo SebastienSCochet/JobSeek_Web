@@ -35,7 +35,7 @@ import {JwtInterceptor} from './interceptor/jwt.interceptor';
     SearchCriteriaComponent,
     JobOffersGridComponent,
     JobOffersMapComponent,
-    JobOfferDetailComponent
+    JobOfferDetailComponent,
   ],
   imports: [
     BrowserModule,

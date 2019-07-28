@@ -1,8 +1,4 @@
 <div class="header d-flex flex-nowrap justify-content-between">
-
-
   <h1 class="display-4 ml-4 mb-4">{{ title }}</h1>
-
-  <app-profil-link></app-profil-link>
-
+  <app-profil-link *ngIf="actualUser" [user]="actualUser" [isAdmin]="isAdmin"></app-profil-link>
 </div>
