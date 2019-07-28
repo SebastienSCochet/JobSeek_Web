@@ -12,12 +12,10 @@ import {Role} from "../../model/role";
 export class HeaderComponent implements OnInit {
   @Input() title: string;
   private actualUser: User;
-  private isAdmin: boolean;
 
   constructor(private usersService: UsersService) {
     this.usersService.getConnectedUser().subscribe(user => {
       this.actualUser = user;
-      this.isAdmin = this.actualUser.role === Role.ADMIN;
     });
   }
 

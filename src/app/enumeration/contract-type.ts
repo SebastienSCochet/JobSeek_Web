@@ -1,3 +1,4 @@
 export enum ContractType {
-  FULLTIME = 'Temps plein', HALFTIME = 'Mi-temps'
+  FULLTIME = 'Temps plein',
+  HALFTIME = 'Mi-temps'
 }

@@ -4,9 +4,9 @@ import {LoginComponent} from './components/login/login.component';
 import {AuthGuard} from './guard/auth.guard';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {SignUpComponent} from './components/sign-up/sign-up.component';
-import {ProfilComponent} from './components/profil/profil.component';
 import {JobSeekComponent} from './components/job-seek/job-seek.component';
 import {JobOfferDetailComponent} from './components/job-offer-detail/job-offer-detail.component';
+import {UserProfilComponent} from './components/user-profil/user-profil.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'job-offers' },
@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard] },
   { path: 'job-offers', component: JobSeekComponent, canActivate: [AuthGuard] },
   { path: 'job-offers/:idJobOffer', component: JobOfferDetailComponent , canActivate: [AuthGuard] },
-  { path: 'profil/:idUser', component: ProfilComponent , canActivate: [AuthGuard] },
+  { path: 'profil', component: UserProfilComponent , canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 

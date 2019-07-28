@@ -12,12 +12,12 @@ import {AuthGuard} from './guard/auth.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ProfilComponent } from './components/profil/profil.component';
 import { SearchCriteriaComponent } from './components/search-criteria/search-criteria.component';
 import { JobOffersGridComponent } from './components/job-offers-grid/job-offers-grid.component';
 import { JobOffersMapComponent } from './components/job-offers-map/job-offers-map.component';
 import { JobOfferDetailComponent } from './components/job-offer-detail/job-offer-detail.component';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
+import { UserProfilComponent } from './components/user-profil/user-profil.component';
 
 
 
@@ -31,11 +31,11 @@ import {JwtInterceptor} from './interceptor/jwt.interceptor';
     JobSeekComponent,
     PageNotFoundComponent,
     SignUpComponent,
-    ProfilComponent,
     SearchCriteriaComponent,
     JobOffersGridComponent,
     JobOffersMapComponent,
     JobOfferDetailComponent,
+    UserProfilComponent,
   ],
   imports: [
     BrowserModule,

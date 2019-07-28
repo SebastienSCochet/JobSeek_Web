@@ -4,6 +4,7 @@ import {JobOffersService} from '../../services/job-offers.service';
 import {Router} from "@angular/router";
 import {Preference} from "../../model/preference";
 import {Observable} from "rxjs";
+import {ContractType} from "../../enumeration/contract-type";
 
 @Component({
   selector: 'app-job-offers-grid',

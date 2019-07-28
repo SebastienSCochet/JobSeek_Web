@@ -10,11 +10,12 @@ import {Role} from '../../model/role';
 })
 export class ProfilLinkComponent implements OnInit {
   @Input() private user: User;
-  @Input() private isAdmin: boolean;
+  private isAdmin: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.isAdmin = this.user.role === Role.ADMIN;
   }
 
 

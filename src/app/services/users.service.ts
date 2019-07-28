@@ -18,4 +18,8 @@ export class UsersService {
   getConnectedUser(): Observable<User> {
     return this.http.get<User>(`${REST_DOMAIN}/users`);
   }
+
+  getUserById(idUser: number): Observable<User> {
+    return this.http.get<User>(`${REST_DOMAIN}/users/${idUser}`);
+  }
 }
