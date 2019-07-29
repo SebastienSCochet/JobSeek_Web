@@ -1,6 +1,6 @@
-<form class="border ml-5 mr-5 mb-5">
+<form class="border ml-5 mr-5 mb-5" (ngSubmit)="search()">
   <div [formGroup]="criteriaForm" class="form-group">
-    <button (click)="search()" type="button" class="mb-4 btn btn-block btn-primary">Rechercher</button>
+    <button type="submit" class="mb-4 btn btn-block btn-primary">Rechercher</button>
 
     <label for="keyword">Mots-clés</label>
     <input type="text" class="form-control" id="keyword" name="keyword" formControlName="keyword"/>

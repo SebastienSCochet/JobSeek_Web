@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../model/user';
 import {UsersService} from '../../services/users.service';
+import {AuthenticationService} from "../../services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-profil',
@@ -10,10 +12,16 @@ import {UsersService} from '../../services/users.service';
 export class UserProfilComponent implements OnInit {
   private user: User;
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService,
+              private router: Router,
+              private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.usersService.getConnectedUser().subscribe(user => this.user = user);
   }
 
+  disconnect() {
+    this.authService.disconnect();
+    this.router.navigate(['/login']);
+  }
 }

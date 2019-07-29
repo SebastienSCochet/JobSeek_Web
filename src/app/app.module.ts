@@ -18,6 +18,8 @@ import { JobOffersMapComponent } from './components/job-offers-map/job-offers-ma
 import { JobOfferDetailComponent } from './components/job-offer-detail/job-offer-detail.component';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AgmCoreModule } from '@agm/core';
 
 
 
@@ -36,6 +38,7 @@ import { UserProfilComponent } from './components/user-profil/user-profil.compon
     JobOffersMapComponent,
     JobOfferDetailComponent,
     UserProfilComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,9 @@ import { UserProfilComponent } from './components/user-profil/user-profil.compon
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB9slGgu1ys6hV7unhO29KuIw6a6Br1xt4'
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,

@@ -1,1 +1,3 @@
-<p>job-offers-map works!</p>
+<agm-map  [longitude]="lng" [latitude]="lat" [zoom]="zoom">
+  <agm-marker *ngFor="let jobOffer of jobOffers" animation="BOUNCE" [label]="jobOffer.title" (markerClick)="viewDetail(jobOffer.idJobOffer)" [opacity]="1" [longitude]="jobOffer.coordinate.longitude" [latitude]="jobOffer.coordinate.latitude" ><!-- iconUrl="assets/icon-suitcase.png" --> </agm-marker>
+</agm-map>

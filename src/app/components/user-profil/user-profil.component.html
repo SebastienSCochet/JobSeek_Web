@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <div class="row"><button class="btn btn-block p-2 col-sm-12 col-md-4 col-lg-4">Retour à la recherche</button></div>
   <div class="row">
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="border p-2">
@@ -7,10 +8,10 @@
       </div>
       <div class="border mt-3 p-2">
         <p id="edit-label">Modifier votre compte</p>
-
-          <button class="btn btn-block btn-light">Information personnelles</button>
-          <button class="btn btn-block btn-light">Préférence</button>
-
+        <button class="btn btn-block btn-light">Information personnelles</button>
+        <button class="btn btn-block btn-light">Préférence</button>
+        <hr/>
+        <button (click)="disconnect()" class="btn btn-block btn-light btn-logout">Déconnexion</button>
       </div>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-8">
