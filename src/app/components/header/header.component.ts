@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {AuthenticationService} from "../../services/authentication.service";
-import {User} from "../../model/user";
-import {UsersService} from "../../services/users.service";
-import {Role} from "../../model/role";
+import {User} from '../../model/user';
+import {UsersService} from '../../services/users.service';
+import {Role} from '../../model/role';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +10,29 @@ import {Role} from "../../model/role";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() title: string;
-  private actualUser: User;
 
-  constructor(private usersService: UsersService) {
-    this.usersService.getConnectedUser().subscribe(user => {
-      this.actualUser = user;
-    });
+  @Input() private title: string;
+  private user: User;
+  private isAdmin: boolean;
+
+  constructor(private location: Location,
+              private usersService: UsersService) {
   }
 
   ngOnInit() {
+    this.retrieveUser();
   }
 
+  retrieveUser() {
+    this.usersService.getConnectedUser().subscribe(user => {
+      this.user = user;
+      if (this.user) {
+        this.isAdmin = this.user.role === Role.ADMIN;
+      }
+    });
+  }
+
+  check(viewLocation) {
+    return viewLocation === this.location.path();
+  }
 }

@@ -1,6 +1,5 @@
 <div class="container-fluid">
-  <div class="row"><button class="btn btn-block p-2 col-sm-12 col-md-4 col-lg-4">Retour à la recherche</button></div>
-  <div class="row">
+  <div class="row" *ngIf="user">
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="border p-2">
         <img class="d-block m-auto" [src]="user.avatarUrl" alt="Photo de {{user.firstname + ' ' + user.lastname}}" />
@@ -8,21 +7,14 @@
       </div>
       <div class="border mt-3 p-2">
         <p id="edit-label">Modifier votre compte</p>
-        <button class="btn btn-block btn-light">Information personnelles</button>
-        <button class="btn btn-block btn-light">Préférence</button>
+        <button class="btn btn-block btn-light" (click)="this.option = 'personal-information'">Information personnelles</button>
+        <button class="btn btn-block btn-light" (click)="this.option = 'preferences'">Préférence</button>
         <hr/>
         <button (click)="disconnect()" class="btn btn-block btn-light btn-logout">Déconnexion</button>
       </div>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-8">
-      <div id="personal-info">
-        <label for="personal-info-email"><b>Adresse e-mail</b></label>
-        <p id="personal-info-email">{{ user.email }}</p>
-        <label for="personal-info-adress"><b>Adresse</b></label>
-        <p id="personal-info-adress">{{ user.address.street }} {{ user.address.number }}<br/>
-          {{user.address.postalCode }} {{user.address.city}}<br/>
-          {{user.address.country}}</p>
-      </div>
+      <app-user-profil-description [user]="user"></app-user-profil-description>
     </div>
   </div>
 </div>

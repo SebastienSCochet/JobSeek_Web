@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfilLinkComponent } from './components/profil-link/profil-link.component';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { LoginComponent } from './components/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,14 +18,16 @@ import {JwtInterceptor} from './interceptor/jwt.interceptor';
 import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AgmCoreModule } from '@agm/core';
+import { JobOfferTabsComponent } from './components/job-offer-tabs/job-offer-tabs.component';
+import { UserProfilPreferencesComponent } from './components/user-profil-preferences/user-profil-preferences.component';
+import { UserProfilPersonalInformationComponent } from './components/user-profil-personal-information/user-profil-personal-information.component';
+import { UserProfilDescriptionComponent } from './components/user-profil-description/user-profil-description.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfilLinkComponent,
-    NavigationComponent,
     LoginComponent,
     HeaderComponent,
     JobSeekComponent,
@@ -39,6 +39,10 @@ import { AgmCoreModule } from '@agm/core';
     JobOfferDetailComponent,
     UserProfilComponent,
     FooterComponent,
+    JobOfferTabsComponent,
+    UserProfilPreferencesComponent,
+    UserProfilPersonalInformationComponent,
+    UserProfilDescriptionComponent,
   ],
   imports: [
     BrowserModule,

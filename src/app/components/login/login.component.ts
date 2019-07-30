@@ -33,12 +33,8 @@ export class LoginComponent implements OnInit {
 
   connect() {
     if (this.email.value && this.password.value) {
-      console.log(this.email.value);
-      console.log(this.password.value);
-
       const credentials: LoginRequest = new LoginRequest(this.email.value, this.password.value);
 
-      console.log('Procédure d\'identification');
       this.authenticationService.authenticate(credentials)
         .subscribe(
           response => {

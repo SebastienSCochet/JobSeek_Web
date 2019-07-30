@@ -1,6 +1,6 @@
 <div class="container-fluid">
-  <app-navigation (changeEvent)="changeTab($event)"></app-navigation>
-  <div class="row">
+  <app-job-offer-tabs (changeEvent)="changeTab($event)"></app-job-offer-tabs>
+  <div class="row mt-5">
     <app-search-criteria [userPreferenceObs]="userPreferenceObs" (searchEvent)="searchJobs($event)" class="col-lg-4 col-md-4 col-sm-12"></app-search-criteria>
     <app-job-offers-grid *ngIf="gridTab" [jobOffers]="jobOffers" class="col-lg-8 col-md-8 col-sm-12"></app-job-offers-grid>
     <app-job-offers-map *ngIf="!gridTab" [jobOffers]="jobOffers" class="col-lg-8 col-md-8 col-sm-12"></app-job-offers-map>

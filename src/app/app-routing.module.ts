@@ -15,6 +15,7 @@ const appRoutes: Routes = [
   { path: 'job-offers', component: JobSeekComponent, canActivate: [AuthGuard] },
   { path: 'job-offers/:idJobOffer', component: JobOfferDetailComponent , canActivate: [AuthGuard] },
   { path: 'profil', component: UserProfilComponent , canActivate: [AuthGuard] },
+  { path: 'profil/:option', component: UserProfilComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent }
 ];
 
