@@ -8,12 +8,12 @@ export class JobOffer {
   title: string;
   description: string;
   contact: string;
-  salyaryMin: number;
+  salaryMin: number;
   salaryMax: number;
   place: string;
   publishDate: Date;
   contractType: ContractType;
   coordinate: Coordinate;
   enterprise: Enterprise;
-  categories: Category[];
+  category: Category;
 }

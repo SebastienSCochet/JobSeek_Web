@@ -1,1 +1,27 @@
-<p>job-offer-detail works!</p>
+<div class="container">
+  <div class="border enterprise-box row mb-5">
+    <a class="col-4" routerLink="/enterprise/{{jobOffer.enterprise.idEnterprise}}"><img class="col-12" src="{{ jobOffer.enterprise.logoUrl }}" [title]="jobOffer.enterprise.name" [alt]="jobOffer.enterprise.name"></a>
+    <h2 class="col-8  my-3">{{jobOffer.title}}</h2>
+  </div>
+  <div class="mb-5">
+    <label>Description</label>
+    <p [innerHTML]="jobOffer.description"></p>
+    <label>Type du contract</label>
+    <p>{{jobOffer.contractType}}</p>
+    <label>Catégorie</label>
+    <p>{{jobOffer.category.label}}</p>
+    <label>Place</label>
+    <p>{{jobOffer.place}}</p>
+    <label>Salaire</label>
+    <p>{{jobOffer.salaryMin}} € - {{jobOffer.salaryMax}} €</p>
+    <label>Contact</label>
+    <p>{{jobOffer.contact}}</p>
+    <label>Date de publication</label>
+    <p>{{jobOffer.publishDate | date:'dd/MM/yyy' }}</p>
+  </div>
+  <agm-map [latitude]="jobOffer.coordinate.latitude" [longitude]="jobOffer.coordinate.longitude" [zoom]="15">
+    <agm-marker [latitude]="jobOffer.coordinate.latitude" [longitude]="jobOffer.coordinate.longitude" animation="BOUNCE" [label]="jobOffer.place"></agm-marker>
+  </agm-map>
+</div>
+
+
