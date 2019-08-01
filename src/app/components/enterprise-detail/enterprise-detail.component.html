@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="border enterprise-box row mb-5">
+    <img class="col-12" [src]="enterprise.logoUrl" [title]="enterprise.name" [alt]="enterprise.name">
+    <h2 class="col-8  my-3">{{enterprise.name}}</h2>
+  </div>
+  <div class="mb-5">
+    <label>Description</label>
+    <p [innerHTML]="enterprise.description"></p>
+    <label>Adresse</label>
+    <p>{{enterprise.address.street}} {{enterprise.address.number}}<br/>
+      {{enterprise.address.postalCode}} {{enterprise.address.city}}<br/>
+      {{enterprise.address.country}}</p>
+  </div>
+</div>
+
+

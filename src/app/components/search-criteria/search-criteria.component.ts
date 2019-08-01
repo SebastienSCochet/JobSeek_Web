@@ -4,7 +4,7 @@ import {CategoriesService} from '../../services/categories.service';
 import {Preference} from '../../model/preference';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
-import {Search} from "../../model/search";
+import {Search} from '../../model/search';
 
 @Component({
   selector: 'app-search-criteria',
@@ -41,8 +41,6 @@ export class SearchCriteriaComponent implements OnInit {
         this.search();
       });
     });
-
-
   }
 
   get category() {

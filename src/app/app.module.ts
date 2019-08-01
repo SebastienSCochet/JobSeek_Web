@@ -15,14 +15,17 @@ import { JobOffersGridComponent } from './components/job-offers-grid/job-offers-
 import { JobOffersMapComponent } from './components/job-offers-map/job-offers-map.component';
 import { JobOfferDetailComponent } from './components/job-offer-detail/job-offer-detail.component';
 import {JwtInterceptor} from './interceptor/jwt.interceptor';
-import { UserProfilComponent } from './components/user-profil/user-profil.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AgmCoreModule } from '@agm/core';
 import { JobOfferTabsComponent } from './components/job-offer-tabs/job-offer-tabs.component';
-import { UserProfilPreferencesComponent } from './components/user-profil-preferences/user-profil-preferences.component';
-import { UserProfilPersonalInformationComponent } from './components/user-profil-personal-information/user-profil-personal-information.component';
-import { UserProfilDescriptionComponent } from './components/user-profil-description/user-profil-description.component';
-
+import { UserProfileAvatarComponent } from './components/user-profile-avatar/user-profile-avatar.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserProfileDescriptionComponent } from './components/user-profile-description/user-profile-description.component';
+import { UserProfileModificationComponent } from './components/user-profile-modification/user-profile-modification.component';
+import { AngularFireModule } from '@angular/fire';
+import {AngularFireStorageModule, StorageBucket} from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+import { EnterpriseDetailComponent } from './components/enterprise-detail/enterprise-detail.component';
 
 
 @NgModule({
@@ -37,12 +40,13 @@ import { UserProfilDescriptionComponent } from './components/user-profil-descrip
     JobOffersGridComponent,
     JobOffersMapComponent,
     JobOfferDetailComponent,
-    UserProfilComponent,
     FooterComponent,
     JobOfferTabsComponent,
-    UserProfilPreferencesComponent,
-    UserProfilPersonalInformationComponent,
-    UserProfilDescriptionComponent,
+    UserProfileAvatarComponent,
+    UserProfileComponent,
+    UserProfileDescriptionComponent,
+    UserProfileModificationComponent,
+    EnterpriseDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,14 +56,17 @@ import { UserProfilDescriptionComponent } from './components/user-profil-descrip
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB9slGgu1ys6hV7unhO29KuIw6a6Br1xt4'
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
     },
-    AuthGuard
+    AuthGuard,
+    { provide: StorageBucket, useValue: 'jobseek-1564363037557' }
   ],
   bootstrap: [AppComponent]
 })

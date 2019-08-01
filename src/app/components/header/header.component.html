@@ -4,17 +4,21 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div *ngIf="user != undefined || !check('/login')" class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div *ngIf="user && !check('/login')" class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav justify-content-end mr-auto">
-      <li class="nav-item" [class.active]="check('/profil')">
-        <a class="nav-link" routerLink="/profil">
-          <img class="avatar" [src]="user.avatarUrl" alt="avatar" />{{ user.firstname + ' ' + user.lastname }}</a>
+      <li class="nav-item" [class.active]="check('/profile')">
+        <a class="nav-link" routerLink="/profile">
+          <img *ngIf="user.avatarUrl" class="avatar" [src]="user.avatarUrl" alt="avatar" />
+          <img *ngIf="!user.avatarUrl" class="avatar" src="assets/default.png" alt="avatar" />
+          {{ user.firstname + ' ' + user.lastname }}</a>
+
+
       </li>
       <li class="nav-item" [class.active]="check('/job-offers')">
-        <a class="nav-link" routerLink="/job-offers">Offres d'emploi<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/job-offers">Rechercher une offre d'emploi<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Administration</a>
+      <li class="nav-item" *ngIf="isAdmin">
+        <a class="nav-link" href="#">Créer une offre d'emploi</a>
       </li>
     </ul>
   </div>

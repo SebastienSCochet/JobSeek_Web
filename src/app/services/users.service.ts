@@ -22,4 +22,8 @@ export class UsersService {
   getUserById(idUser: number): Observable<User> {
     return this.http.get<User>(`${REST_DOMAIN}/users/${idUser}`);
   }
+
+  update(idUser: number, user: User): Observable<User> {
+    return this.http.put<User>(`${REST_DOMAIN}/users/${idUser}`, user);
+  }
 }

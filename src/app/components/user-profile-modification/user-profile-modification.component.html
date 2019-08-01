@@ -1,0 +1,78 @@
+<form class="my-3" [formGroup]="personalInfoForm" >
+
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="firstname">Prénom</label>
+      <input type="text" class="form-control" id="firstname" formControlName="firstname">
+      <div class="alert alert-danger" *ngIf="firstname.invalid && firstname.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="lastname">Nom</label>
+      <input type="text" class="form-control" id="lastname" formControlName="lastname">
+      <div class="alert alert-danger" *ngIf="lastname.invalid && lastname.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="birth">Date de naissance</label>
+      <input type="date" class="form-control" id="birth" placeholder="Date de naissance (dd/mm/yyyy)" formControlName="birth">
+      <div class="alert alert-danger" *ngIf="birth.invalid && birth.touched" >
+        <div *ngIf="!birth.value">Ce champ est requis.</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="email">E-mail</label>
+      <input type="i-email" class="form-control" id="email" formControlName="email" >
+      <div class="alert alert-danger" *ngIf="email.invalid && email.touched" >
+        <div *ngIf="!email.value">Ce champ est requis.</div>
+        <div *ngIf="email.dirty">Veuillez entrer une adresse valide.</div>
+      </div>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="password">Mot de passe</label>
+      <input type="password" class="form-control" id="password" formControlName="password">
+      <div class="alert alert-danger" *ngIf="password.invalid && password.touched" >Ce champ est requis.</div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-9">
+      <label for="street">Rue</label>
+      <input type="text" class="form-control" id="street" formControlName="street">
+      <div class="alert alert-danger" *ngIf="street.invalid && street.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="number">Numéro</label>
+      <input type="number" class="form-control" id="number" formControlName="number">
+      <div class="alert alert-danger" *ngIf="number.invalid && number.touched" >
+        <div *ngIf="!number.value">Ce champ est requis.</div>
+        <div *ngIf="number.value">Numéro de rue invalide.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="city">Ville</label>
+      <input type="text" class="form-control" id="city" formControlName="city">
+      <div class="alert alert-danger" *ngIf="city.invalid && city.touched" >Ce champ est requis.</div>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="postalCode">Code postal</label>
+      <input type="number" class="form-control" id="postalCode" formControlName="postalCode" >
+      <div class="alert alert-danger" *ngIf="postalCode.invalid && postalCode.touched" >
+        <div *ngIf="!postalCode.value">Ce champ est requis.</div>
+        <div *ngIf="postalCode.value">Code postal invalide.</div>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="country">Pays</label>
+      <select id="country" class="form-control" formControlName="country">
+        <option *ngFor="let country of countries">{{country}}</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="country.invalid && country.touched" >Ce champ est requis.</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="personalInfoForm.invalid" class="btn btn-primary mt-5 btn-block" (click)="save()">Sauvegarder les modifications</button>
+</form>

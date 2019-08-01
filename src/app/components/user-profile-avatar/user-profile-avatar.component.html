@@ -1,0 +1,8 @@
+<div class="mx-auto mt-3 border w-50 text-center p-3">
+  <div class="form-group">
+    <label for="file">Sélectionnez une image...</label>
+    <input id="file" type="file" class="form-control-file" (change)="setFile($event.target.files)">
+  </div>
+  <button class="btn btn-primary btn-block mt-5" (click)="startUpload()">Mettre à jour</button>
+  <div *ngIf="message" class="alert alert-light">{{message}}</div>
+</div>

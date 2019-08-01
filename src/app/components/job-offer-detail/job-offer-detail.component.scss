@@ -11,6 +11,16 @@
   font-size: 20px;
 }
 
+.btn-delete {
+  margin-top: 60px;
+  margin-right: 0;
+  margin-left: auto;
+  padding-left: 50px;
+  background-position: 10% 50%;
+  background-repeat: no-repeat;
+  background-image: url("../../../assets/icon-trash.png");
+}
+
 label {
   font-weight: bold;
 }

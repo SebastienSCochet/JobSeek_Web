@@ -9,6 +9,7 @@ import {CategoriesService} from '../../services/categories.service';
 import {Preference} from '../../model/preference';
 import {AuthenticationService} from '../../services/authentication.service';
 import {LoginRequest} from '../../payload/login-request';
+import {ImagesService} from "../../services/images.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -26,6 +27,7 @@ export class SignUpComponent implements OnInit {
   constructor(private usersService: UsersService,
               private categoriesService: CategoriesService,
               private authService: AuthenticationService,
+              private imagesService: ImagesService,
               private formBuilder: FormBuilder,
               private router: Router) { }
 
@@ -38,10 +40,10 @@ export class SignUpComponent implements OnInit {
 
 
     this.signUpForm = this.formBuilder.group({
-      firstName: ['', [
+      firstname: ['', [
         Validators.required,
       ]],
-      lastName: ['', [
+      lastname: ['', [
         Validators.required
       ]],
       birth : ['', [
@@ -77,12 +79,12 @@ export class SignUpComponent implements OnInit {
     });
   }
 
-  get firstName() {
-    return this.signUpForm.get('firstName');
+  get firstname() {
+    return this.signUpForm.get('firstname');
   }
 
-  get lastName() {
-    return this.signUpForm.get('lastName');
+  get lastname() {
+    return this.signUpForm.get('lastname');
   }
 
   get birth() {
@@ -122,6 +124,18 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
+    this.user.firstname = this.firstname.value;
+    this.user.lastname = this.lastname.value;
+    this.user.email = this.email.value;
+    this.user.birth = this.birth.value;
+    this.user.password = this.password.value;
+    this.user.address.street = this.street.value;
+    this.user.address.number = this.number.value;
+    this.user.address.city = this.city.value;
+    this.user.address.postalCode = this.postalCode.value;
+    this.user.address.country = this.country.value;
+    this.user.preference.category = this.category.value;
+
     this.usersService.signUp(this.user).subscribe(() => {
       this.authService.authenticate(new LoginRequest(this.user.email, this.user.password))
         .subscribe(response => {
