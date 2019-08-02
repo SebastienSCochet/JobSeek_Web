@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Category} from '../../model/category';
+import {CategoriesService} from '../../services/categories.service';
+import {ContractType} from '../../enumeration/contract-type';
 
 @Component({
   selector: 'app-job-offer-creation',
@@ -8,15 +11,29 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class JobOfferCreationComponent implements OnInit {
   jobCreationForm: FormGroup;
+  categories: Category[];
+  contractTypes = [ContractType.HALFTIME, ContractType.FULLTIME]
 
-  constructor() {
-    this.jobCreationForm = new FormGroup({
-      title: new FormControl(['', Validators.required]),
-      description: new FormControl(['', Validators.required])
-    });
+  constructor(private formBuilder: FormBuilder,
+              private categoriesService: CategoriesService) {
+    this.jobCreationForm = formBuilder.group({
+      title: ['', Validators.required],
+      category: ['', Validators.required],
+      description: ['', Validators.required],
+      contractType: ['', Validators.required],
+      contact: ['', Validators.required],
+      place: ['', Validators.required],
+      salaryMin: ['', [Validators.required, Validators.min(0)]],
+      salaryMax: ['', [Validators.required, Validators.min(0)]]
+  });
   }
 
   ngOnInit() {
+    this.categoriesService.findAll().subscribe(c => { this.categories = c; });
+  }
+
+  create() {
+
   }
 
 }

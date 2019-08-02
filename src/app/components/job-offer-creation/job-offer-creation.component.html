@@ -1,8 +1,57 @@
 <div class="container">
-  <form class="form-group" [formGroup]="jobCreationForm">
-    <label for="title">Titre de l'offre</label>
-    <input type="text" id="title" formControlName="title"/>
-    <label for="desc">Titre de l'offre</label>
-    <input type="text" id="desc" formControlName="description"/>
+
+  <h1>Création d'une offre d'emploi</h1>
+
+  <form [formGroup]="jobCreationForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="title">Titre</label>
+        <input type="text" class="form-control" id="title" formControlName="title" placeholder="ex : Développeur Android"/>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label for="category">Categorie</label>
+        <select id="category" class="form-control" formControlName="category">
+          <option *ngFor="let category of categories" [ngValue]="category">{{ category.label }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="desc">Description</label>
+      <textarea id="desc" formControlName="description" rows="10" class="form-control" placeholder="Une description de l'offre..."></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="contractType">Type de contrat</label>
+        <select name="contractType" class="form-control" id="contractType">
+          <option *ngFor="let contractType of contractTypes">{{contractType}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="contact">Adresse de contact</label>
+        <input class="form-control" id="contact" placeholder="contact@mail.com">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="place">Lieu</label>
+        <input type="text" class="form-control" id="place" />
+      </div>
+
+      <div class="form-group">
+        <div id="salary form-row">
+          <input type="number" class="form-control col-md-3" formControlName="salaryMin" />
+          <input type="number" class="form-control col-md-3" formControlName="salaryMax" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="enterprise">Entreprise</label>
+      <input type="text" formControlName="enterprise" id="enterprise">
+    </div>
   </form>
 </div>

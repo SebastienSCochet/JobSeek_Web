@@ -9,7 +9,7 @@ import {CategoriesService} from '../../services/categories.service';
 import {Preference} from '../../model/preference';
 import {AuthenticationService} from '../../services/authentication.service';
 import {LoginRequest} from '../../payload/login-request';
-import {ImagesService} from "../../services/images.service";
+import {ImagesService} from '../../services/images.service';
 
 @Component({
   selector: 'app-sign-up',

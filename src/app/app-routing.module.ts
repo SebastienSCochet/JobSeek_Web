@@ -8,6 +8,7 @@ import {JobSeekComponent} from './components/job-seek/job-seek.component';
 import {JobOfferDetailComponent} from './components/job-offer-detail/job-offer-detail.component';
 import {UserProfileComponent} from './components/user-profile/user-profile.component';
 import {EnterpriseDetailComponent} from './components/enterprise-detail/enterprise-detail.component';
+import {JobOfferCreationComponent} from './components/job-offer-creation/job-offer-creation.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'job-offers' },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'job-offers', component: JobSeekComponent, canActivate: [AuthGuard] },
   { path: 'job-offers/:idJobOffer', component: JobOfferDetailComponent , canActivate: [AuthGuard] },
+  { path: 'admin/job-offers', component: JobOfferCreationComponent, canActivate: [AuthGuard]},
   { path: 'enterprises/:idEnterprise', component: EnterpriseDetailComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: UserProfileComponent , canActivate: [AuthGuard] },
   { path: 'profile/:option', component: UserProfileComponent, canActivate: [AuthGuard] },
