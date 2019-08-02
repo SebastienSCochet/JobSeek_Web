@@ -26,6 +26,7 @@ import { AngularFireModule } from '@angular/fire';
 import {AngularFireStorageModule, StorageBucket} from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { EnterpriseDetailComponent } from './components/enterprise-detail/enterprise-detail.component';
+import { JobOfferCreationComponent } from './components/job-offer-creation/job-offer-creation.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { EnterpriseDetailComponent } from './components/enterprise-detail/enterp
     UserProfileDescriptionComponent,
     UserProfileModificationComponent,
     EnterpriseDetailComponent,
+    JobOfferCreationComponent,
   ],
   imports: [
     BrowserModule,
