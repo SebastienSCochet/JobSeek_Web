@@ -1,12 +1,13 @@
 <div class="container">
 
-  <h1>Création d'une offre d'emploi</h1>
+  <h1 class="display-4 mb-5">Création d'une offre d'emploi</h1>
 
   <form [formGroup]="jobCreationForm">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="title">Titre</label>
-        <input type="text" class="form-control" id="title" formControlName="title" placeholder="ex : Développeur Android"/>
+        <input type="text" class="form-control" id="title" formControlName="title"
+               placeholder="ex : Développeur Android"/>
       </div>
 
       <div class="form-group col-md-6">
@@ -19,7 +20,17 @@
 
     <div class="form-group">
       <label for="desc">Description</label>
-      <textarea id="desc" formControlName="description" rows="10" class="form-control" placeholder="Une description de l'offre..."></textarea>
+      <div class="buttons-text">
+        <button (click)="insert('bold')" class="btn btn-light" title="Gras"><b>G</b></button>
+        <button (click)="insert('italic')" class="btn btn-light" title="Italique"><i>I</i></button>
+        <button (click)="insert('underline')" class="btn btn-light" title="Souligné"><U>S</U></button>
+        <button (click)="insert('link')" class="btn btn-light" title="Lien"><u><i>Lien</i></u></button>
+        <button (click)="insert('header1')" class="btn btn-light" title="Titre 1"><b>h1</b></button>
+        <button (click)="insert('header2')" class="btn btn-light" title="Titre 2"><b>h2</b></button>
+        <button (click)="insert('header3')" class="btn btn-light" title="Titre 3"><b>h3</b></button>
+      </div>
+      <textarea id="desc" formControlName="description" rows="10" class="form-control"
+                placeholder="Une description de l'offre..."></textarea>
     </div>
 
     <div class="form-row">
@@ -38,20 +49,29 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="place">Lieu</label>
-        <input type="text" class="form-control" id="place" />
+        <input type="text" class="form-control" id="place"/>
       </div>
-
-      <div class="form-group">
-        <div id="salary form-row">
-          <input type="number" class="form-control col-md-3" formControlName="salaryMin" />
-          <input type="number" class="form-control col-md-3" formControlName="salaryMax" />
+      <div class="form-group col-md-6">
+        <label>Salaire mensuel</label>
+        <div class="salary">
+          <input type="number" id="salaryMin" placeholder="Minimum" class="form-control col-md-3"
+                 formControlName="salaryMin"/>
+          <span class="hyphen">-</span>
+          <input type="number" id="salaryMax" class="form-control col-md-3" placeholder="Maximum"
+                 formControlName="salaryMax"/>
+          <span class="currency">€</span>
         </div>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="enterprise">Entreprise</label>
-      <input type="text" formControlName="enterprise" id="enterprise">
-    </div>
+    <hr/>
+
+    <app-enterprise-selection></app-enterprise-selection>
+
+    <label>Coordonnées de l'emploi</label>
+    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="onMapClick($event)">
+      <agm-marker [longitude]="markerLongitude" [latitude]="markerLatitude"></agm-marker>
+    </agm-map>
+
   </form>
 </div>

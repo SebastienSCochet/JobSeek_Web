@@ -27,6 +27,8 @@ import {AngularFireStorageModule, StorageBucket} from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { EnterpriseDetailComponent } from './components/enterprise-detail/enterprise-detail.component';
 import { JobOfferCreationComponent } from './components/job-offer-creation/job-offer-creation.component';
+import {AutocompleteModule} from "ng2-input-autocomplete";
+import { EnterpriseSelectionComponent } from './components/enterprise-selection/enterprise-selection.component';
 
 
 @NgModule({
@@ -49,6 +51,7 @@ import { JobOfferCreationComponent } from './components/job-offer-creation/job-o
     UserProfileModificationComponent,
     EnterpriseDetailComponent,
     JobOfferCreationComponent,
+    EnterpriseSelectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { JobOfferCreationComponent } from './components/job-offer-creation/job-o
       apiKey: 'AIzaSyB9slGgu1ys6hV7unhO29KuIw6a6Br1xt4'
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AutocompleteModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS,

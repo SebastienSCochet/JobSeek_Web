@@ -1,0 +1,10 @@
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label for="enterprise">Entreprise</label>
+    <div>
+      <input input-autocomplete [items]="enterprises" [config]="config" type="text" class="form-control"
+             formControlName="enterprise" id="enterprise"
+             (inputChangedEvent)="getEnterprises()" [(ngModel)]="enterpriseNameSearch">
+    </div>
+  </div>
+</div>

@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <button class="btn btn-danger btn-delete" (click)="delete()">Supprimer l'offre</button>
+  <button *ngIf="isAdmin" class="btn btn-danger btn-delete" (click)="delete()">Supprimer l'offre</button>
 </div>
 
 

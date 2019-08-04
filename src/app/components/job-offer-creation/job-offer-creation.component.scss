@@ -1,0 +1,32 @@
+#salaryMin #salaryMax {
+  width: 20px;
+}
+
+.salary {
+  display: flex;
+}
+
+.salary input {
+  max-width: 125px;
+}
+
+.hyphen {
+  margin : 0 10px;
+}
+
+.currency {
+  margin: 0 10px;
+}
+
+.buttons-text button {
+  margin: 10px 5px;
+}
+
+agm-map {
+  height: 300px;
+}
+
+label {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}

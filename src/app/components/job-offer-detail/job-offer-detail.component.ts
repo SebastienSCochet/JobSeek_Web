@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {JobOffersService} from '../../services/job-offers.service';
 import {JobOffer} from '../../model/job-offer';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UsersService} from "../../services/users.service";
+import {Role} from "../../model/role";
 
 @Component({
   selector: 'app-job-offer-detail',
@@ -10,13 +12,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class JobOfferDetailComponent implements OnInit {
   private jobOffer: JobOffer;
+  isAdmin: boolean;
 
   constructor(private jobOffersService: JobOffersService,
+              private usersService: UsersService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
     this.getOffer();
+    this.usersService.getConnectedUser().subscribe(u => this.isAdmin = u.role === Role.ADMIN );
   }
 
   getOffer() {
