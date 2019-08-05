@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {JobOffer} from '../../model/job-offer';
 import {Search} from '../../model/search';
 import {NavigationTab} from '../../enumeration/navigation-tab';
+import {CoordinatesService} from '../../services/coordinates.service';
 
 @Component({
   selector: 'app-job-seek',
@@ -19,13 +20,15 @@ export class JobSeekComponent implements OnInit {
   gridTab = true;
 
   constructor(private preferencesService: PreferencesService,
-              private jobOffersService: JobOffersService) { }
+              private jobOffersService: JobOffersService,
+              private coordinatesService: CoordinatesService) { }
 
   ngOnInit() {
     this.userPreferenceObs = this.preferencesService.findByUser();
   }
 
   searchJobs(search: Search) {
+    this.coordinatesService.updateCoordinate(search.coordinate).subscribe();
     this.jobOffersService.findOffersBySearch(search).subscribe(o => this.jobOffers = o);
   }
 

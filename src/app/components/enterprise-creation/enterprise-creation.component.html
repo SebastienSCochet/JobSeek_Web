@@ -10,7 +10,7 @@
       </div>
       <label for="description">Description de l'entreprise</label>
       <div class="form-group">
-        <textarea class="form-control" name="description" id="description" formControlName="description" cols="30"
+        <textarea class="form-control" name="description" id="description" #desc formControlName="description" cols="30"
                   rows="10"></textarea>
         <div class="alert alert-danger" *ngIf="description.invalid && description.touched">Ce champ est requis.</div>
       </div>
@@ -50,14 +50,14 @@
 
       <div class="form-group">
         <label for="file">Logo</label>
-        <input id="file" type="file" class="form-control-file" (change)="setFile($event.target.files)">
+        <input id="file" type="file" #file class="form-control-file" (change)="setFile($event.target.files)">
         <div *ngIf="message" class="alert alert-light" [innerHTML]="message"></div>
       </div>
 
       <img *ngIf="enterprise.logoUrl" [src]="enterprise.logoUrl" class="m-auto" alt="Logo de l'entreprise"/>
 
-      <button class="btn btn-light btn-block mt-4" [disabled]="enterpriseForm.invalid" (click)="create()">Ajouter
-        l'entreprise
+      <button class="btn btn-light btn-block mt-4" [disabled]="enterpriseForm.invalid || (desc.textLength === 0) || !file.files" (click)="create()">
+        Ajouter l'entreprise
       </button>
       <div [innerHTML]="successMessage"></div>
     </div>

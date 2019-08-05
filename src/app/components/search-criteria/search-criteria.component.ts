@@ -2,11 +2,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Category} from '../../model/category';
 import {CategoriesService} from '../../services/categories.service';
 import {Preference} from '../../model/preference';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Search} from '../../model/search';
 import {DEFAULT_COORDINATE} from '../../model/constants';
-import {Coordinate} from '../../model/coordinate';
 
 @Component({
   selector: 'app-search-criteria',
