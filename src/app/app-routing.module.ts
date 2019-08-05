@@ -12,7 +12,7 @@ import {JobOfferCreationComponent} from './components/job-offer-creation/job-off
 import {EnterpriseCreationComponent} from './components/enterprise-creation/enterprise-creation.component';
 
 const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'job-offers' },
+  { path: '', pathMatch: 'full', redirectTo: '/job-offers' },
   { path: 'login', component: LoginComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'job-offers', component: JobSeekComponent, canActivate: [AuthGuard] },
@@ -26,7 +26,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(appRoutes, { enableTracing: false, useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
