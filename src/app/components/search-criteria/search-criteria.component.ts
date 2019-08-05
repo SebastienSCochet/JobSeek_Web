@@ -5,6 +5,8 @@ import {Preference} from '../../model/preference';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {Search} from '../../model/search';
+import {DEFAULT_COORDINATE} from '../../model/constants';
+import {Coordinate} from '../../model/coordinate';
 
 @Component({
   selector: 'app-search-criteria',
@@ -13,11 +15,12 @@ import {Search} from '../../model/search';
 })
 export class SearchCriteriaComponent implements OnInit {
 
-  private categories: Category[];
-  @Input() private userPreferenceObs: Observable<Preference>;
+  categories: Category[];
+  @Input() userPreferenceObs: Observable<Preference>;
   private userPreference: Preference;
   @Output() searchEvent = new EventEmitter();
-  private criteriaForm: FormGroup;
+  criteriaForm: FormGroup;
+  userCoordinate = DEFAULT_COORDINATE;
 
   constructor(private categoriesService: CategoriesService,
               ) {
@@ -31,6 +34,13 @@ export class SearchCriteriaComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.userCoordinate.latitude = position.coords.latitude;
+        this.userCoordinate.longitude = position.coords.longitude;
+      });
+    }
+
     this.categoriesService.findAll().subscribe(allCategories => {
       this.categories = allCategories;
       this.userPreferenceObs.subscribe(userPreference => {
@@ -64,7 +74,7 @@ export class SearchCriteriaComponent implements OnInit {
       idPreference: this.userPreference.idPreference,
       category: this.category.value,
       distanceMax: this.distance.value,
-      salaryMin: this.salary.value
-    }));
+      salaryMin: this.salary.value,
+    }, this.userCoordinate));
   }
 }

@@ -1,10 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {JobOffer} from '../../model/job-offer';
-import {JobOffersService} from '../../services/job-offers.service';
-import {Router} from "@angular/router";
-import {Preference} from "../../model/preference";
-import {Observable} from "rxjs";
-import {ContractType} from "../../enumeration/contract-type";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-job-offers-grid',
@@ -13,7 +9,7 @@ import {ContractType} from "../../enumeration/contract-type";
 })
 export class JobOffersGridComponent implements OnInit {
 
-  @Input() private jobOffers: JobOffer[];
+  @Input() jobOffers: JobOffer[];
 
   constructor(private router: Router) { }
 

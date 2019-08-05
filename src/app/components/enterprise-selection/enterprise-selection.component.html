@@ -1,10 +1,26 @@
-<div class="form-row">
-  <div class="form-group col-md-6">
-    <label for="enterprise">Entreprise</label>
-    <div>
-      <input input-autocomplete [items]="enterprises" [config]="config" type="text" class="form-control"
-             formControlName="enterprise" id="enterprise"
-             (inputChangedEvent)="getEnterprises()" [(ngModel)]="enterpriseNameSearch">
+<div class="border p-3 ">
+
+  <label for="enterprise">Entreprise</label>
+  <div class="form-row">
+    <div class="form-group">
+      <input input-autocomplete [items]="enterprises" [config]="config"
+             placeholder="Nom de l'entreprise"
+             id="enterprise" class="form-control enterpriseInput"
+             (inputChangedEvent)="getEnterprises()" (selectEvent)="showEnterprise($event)"
+             [(ngModel)]="enterpriseNameSearch"/>
+      <div class="alert alert-danger" *ngIf="!selectedEnterprise && inputTouched" >Ce champ est requis.</div>
+      <button class="btn btn-link ml-3" (click)="showCreationEnterprise()">
+        {{enterpriseCreationVisible ? 'Masquer la création de l\'entreprise' : 'Entreprise absente ?'}}
+      </button>
     </div>
   </div>
+
+  <div class="row my-4" *ngIf="selectedEnterprise">
+    <img class="enterpriseLogo ml-3" [src]="selectedEnterprise.logoUrl" alt="Logo de l'entreprise"/>
+    <p class="ml-2"><b>Nom</b> : {{selectedEnterprise.name}}<br/>{{selectedEnterprise.description}}</p>
+  </div>
+
+  <app-enterprise-creation *ngIf="enterpriseCreationVisible"
+                           (onEnterpriseCreated)="setSelectedEnterprise($event)"></app-enterprise-creation>
+
 </div>

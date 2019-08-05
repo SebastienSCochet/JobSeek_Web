@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {JobOffer} from '../../model/job-offer';
 import {Router} from '@angular/router';
+import {DEFAULT_COORDINATE} from '../../model/constants';
 
 @Component({
   selector: 'app-job-offers-map',
@@ -9,9 +10,9 @@ import {Router} from '@angular/router';
 })
 export class JobOffersMapComponent implements OnInit {
 
-  @Input() private jobOffers: JobOffer[];
-  lat = 50.6325574;
-  lng = 5.5796662;
+  @Input() jobOffers: JobOffer[];
+  lat = DEFAULT_COORDINATE.latitude;
+  lng = DEFAULT_COORDINATE.longitude;
   zoom = 10;
 
   constructor(private router: Router) { }

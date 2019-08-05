@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/user';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {COUNTRIES} from '../../model/constants';
 
 @Component({
   selector: 'app-user-profile-modification',
@@ -13,7 +14,7 @@ export class UserProfileModificationComponent implements OnInit {
   personalInfoForm: FormGroup;
   @Input() user: User;
   @Output() personalInfoChange = new EventEmitter<User>();
-  countries = ['Belgique'];
+  countries = COUNTRIES;
 
   constructor(private formBuilder: FormBuilder,
               private router: Router) {

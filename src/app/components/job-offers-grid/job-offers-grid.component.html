@@ -5,7 +5,7 @@
       <li><h3>{{offer.title}}</h3></li>
       <li><b>Entreprise</b> : <b><a routerLink="/enterprises/{{offer.enterprise.idEnterprise}}">{{offer.enterprise.name}}</a></b></li>
       <li><b>Salaire</b> : {{offer.salaryMin}} € - {{offer.salaryMax}} €</li>
-      <li><b>Type de contract</b> : {{offer.contractType}}</li>
+      <li><b>Type de contract</b> : {{offer.contractType.toString() == 'HALFTIME' ? 'Temps partiel' : 'Temps plein'}}</li>
     </ul>
     <button class="btn btn-info btn-block" (click)="detail(offer.idJobOffer)">Détails</button>
   </div>

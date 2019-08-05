@@ -2,12 +2,14 @@
 
   <h1 class="display-4 mb-5">Création d'une offre d'emploi</h1>
 
-  <form [formGroup]="jobCreationForm">
+  <p>Veuillez remplir tous les champs</p>
+  <form [formGroup]="jobCreationForm" (ngSubmit)="create()">
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="title">Titre</label>
         <input type="text" class="form-control" id="title" formControlName="title"
                placeholder="ex : Développeur Android"/>
+        <div class="alert alert-danger" *ngIf="title.invalid && title.touched" >Ce champ est requis.</div>
       </div>
 
       <div class="form-group col-md-6">
@@ -15,6 +17,7 @@
         <select id="category" class="form-control" formControlName="category">
           <option *ngFor="let category of categories" [ngValue]="category">{{ category.label }}</option>
         </select>
+        <div class="alert alert-danger" *ngIf="category.invalid && category.touched" >Ce champ est requis.</div>
       </div>
     </div>
 
@@ -30,26 +33,31 @@
         <button (click)="insert('header3')" class="btn btn-light" title="Titre 3"><b>h3</b></button>
       </div>
       <textarea id="desc" formControlName="description" rows="10" class="form-control"
+                maxlength="500"
                 placeholder="Une description de l'offre..."></textarea>
+      <div class="alert alert-danger" *ngIf="description.invalid && description.touched" >Ce champ est requis.</div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="contractType">Type de contrat</label>
         <select name="contractType" class="form-control" id="contractType">
-          <option *ngFor="let contractType of contractTypes">{{contractType}}</option>
+          <option *ngFor="let contractType of contractTypes">{{contractType == 0 ? 'Temps partiel' : 'Temps plein'}}</option>
         </select>
+        <div class="alert alert-danger" *ngIf="contractType.invalid && contractType.touched" >Ce champ est requis.</div>
       </div>
       <div class="form-group col-md-6">
-        <label for="contact">Adresse de contact</label>
-        <input class="form-control" id="contact" placeholder="contact@mail.com">
+        <label for="contact">Contact</label>
+        <input class="form-control" id="contact" placeholder="E-mail, GSM, ..." formControlName="contact">
+        <div class="alert alert-danger" *ngIf="contact.invalid && contact.touched" >Ce champ est requis.</div>
       </div>
     </div>
 
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="place">Lieu</label>
-        <input type="text" class="form-control" id="place"/>
+        <input type="text" class="form-control" formControlName="place" id="place"/>
+        <div class="alert alert-danger" *ngIf="place.invalid && place.touched" >Ce champ est requis.</div>
       </div>
       <div class="form-group col-md-6">
         <label>Salaire mensuel</label>
@@ -61,17 +69,18 @@
                  formControlName="salaryMax"/>
           <span class="currency">€</span>
         </div>
+        <div class="alert alert-danger" *ngIf="(salaryMax.invalid && salaryMax.touched) || (salaryMin.invalid && salaryMin.touched)" >Ces champs sont requis.</div>
       </div>
     </div>
 
-    <hr/>
-
-    <app-enterprise-selection></app-enterprise-selection>
+    <app-enterprise-selection [inputTouched]="!enterprise && this.jobCreationForm.valid" (onEnterpriseSelected)="setEnterprise($event)"></app-enterprise-selection>
 
     <label>Coordonnées de l'emploi</label>
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="onMapClick($event)">
       <agm-marker [longitude]="markerLongitude" [latitude]="markerLatitude"></agm-marker>
     </agm-map>
 
+    <button type="submit" [disabled]="jobCreationForm.invalid" class="btn btn-block btn-primary mt-5" >Insérer l'offre d'emploi</button>
+    <button type="button" class="btn btn-block btn-link mt-4">Retour à la recherche</button>
   </form>
 </div>

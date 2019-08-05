@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Enterprise} from '../../model/enterprise';
 import {EnterprisesService} from '../../services/enterprises.service';
 
@@ -9,16 +9,21 @@ import {EnterprisesService} from '../../services/enterprises.service';
 })
 export class EnterpriseSelectionComponent implements OnInit {
 
-  private enterprises: Enterprise[];
-  private config = {
-    class: 'form-control',
+  enterpriseNameSearch: string;
+  enterprises: Enterprise[];
+  config = {
+    class: '',
+    placeholder: '',
     max: 5,
-    placeholder: 'Nom de l\'entreprise',
     sourceField: ['name']
   };
-  private enterpriseNameSearch: string;
+  selectedEnterprise: Enterprise;
+  enterpriseCreationVisible = false;
+  @Output() onEnterpriseSelected = new EventEmitter();
+  @Input() inputTouched: boolean;
 
-  constructor(private enterprisesService: EnterprisesService) { }
+  constructor(private enterprisesService: EnterprisesService) {
+  }
 
   ngOnInit() {
     this.getEnterprises();
@@ -28,4 +33,19 @@ export class EnterpriseSelectionComponent implements OnInit {
     this.enterprisesService.findAll(this.enterpriseNameSearch).subscribe(e => this.enterprises = e);
   }
 
+  showEnterprise($event) {
+    this.selectedEnterprise = $event;
+    this.onEnterpriseSelected.emit(this.selectedEnterprise);
+  }
+
+  showCreationEnterprise() {
+    this.enterpriseCreationVisible = !this.enterpriseCreationVisible;
+  }
+
+
+  setSelectedEnterprise($event) { // $event : Enterprise
+    this.selectedEnterprise = $event;
+    this.enterpriseCreationVisible = false;
+    this.onEnterpriseSelected.emit(this.selectedEnterprise);
+  }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {JobOffersService} from '../../services/job-offers.service';
 import {JobOffer} from '../../model/job-offer';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UsersService} from "../../services/users.service";
-import {Role} from "../../model/role";
+import {UsersService} from '../../services/users.service';
+import {Role} from '../../model/role';
 
 @Component({
   selector: 'app-job-offer-detail',
@@ -11,7 +11,7 @@ import {Role} from "../../model/role";
   styleUrls: ['./job-offer-detail.component.scss']
 })
 export class JobOfferDetailComponent implements OnInit {
-  private jobOffer: JobOffer;
+  jobOffer: JobOffer;
   isAdmin: boolean;
 
   constructor(private jobOffersService: JobOffersService,

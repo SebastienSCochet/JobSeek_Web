@@ -10,6 +10,7 @@ import {Preference} from '../../model/preference';
 import {AuthenticationService} from '../../services/authentication.service';
 import {LoginRequest} from '../../payload/login-request';
 import {ImagesService} from '../../services/images.service';
+import {COUNTRIES} from '../../model/constants';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,10 +20,10 @@ import {ImagesService} from '../../services/images.service';
 export class SignUpComponent implements OnInit {
 
 
-  private signUpForm: FormGroup;
+  signUpForm: FormGroup;
   private user: User;
-  private categoriesAvailable: Category[];
-  private countries: string[] = ['Belgique'];
+  categoriesAvailable: Category[];
+  countries = COUNTRIES;
 
   constructor(private usersService: UsersService,
               private categoriesService: CategoriesService,

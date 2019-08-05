@@ -27,8 +27,9 @@ import {AngularFireStorageModule, StorageBucket} from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { EnterpriseDetailComponent } from './components/enterprise-detail/enterprise-detail.component';
 import { JobOfferCreationComponent } from './components/job-offer-creation/job-offer-creation.component';
-import {AutocompleteModule} from "ng2-input-autocomplete";
 import { EnterpriseSelectionComponent } from './components/enterprise-selection/enterprise-selection.component';
+import {AutocompleteModule} from 'ng2-input-autocomplete';
+import { EnterpriseCreationComponent } from './components/enterprise-creation/enterprise-creation.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { EnterpriseSelectionComponent } from './components/enterprise-selection/
     EnterpriseDetailComponent,
     JobOfferCreationComponent,
     EnterpriseSelectionComponent,
+    EnterpriseCreationComponent,
   ],
   imports: [
     BrowserModule,

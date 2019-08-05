@@ -14,9 +14,9 @@ import {NavigationTab} from '../../enumeration/navigation-tab';
 })
 export class JobSeekComponent implements OnInit {
 
-  private userPreferenceObs: Observable<Preference>;
-  private jobOffers: JobOffer[];
-  private gridTab = true;
+  userPreferenceObs: Observable<Preference>;
+  jobOffers: JobOffer[];
+  gridTab = true;
 
   constructor(private preferencesService: PreferencesService,
               private jobOffersService: JobOffersService) { }

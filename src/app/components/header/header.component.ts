@@ -11,9 +11,9 @@ import {Location} from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() private title: string;
-  private user: User;
-  private isAdmin: boolean;
+  @Input() title: string;
+  user: User;
+  isAdmin: boolean;
 
   constructor(private location: Location,
               private usersService: UsersService) {

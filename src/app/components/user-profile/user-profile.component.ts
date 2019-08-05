@@ -10,8 +10,8 @@ import {AuthenticationService} from '../../services/authentication.service';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  private user: User;
-  private option: string; // avatar or information according to the selected tab
+  user: User;
+  option: string; // avatar or information according to the selected tab
 
   constructor(private usersService: UsersService,
               private router: Router,

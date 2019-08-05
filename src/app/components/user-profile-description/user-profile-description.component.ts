@@ -8,7 +8,7 @@ import {User} from "../../model/user";
 })
 export class UserProfileDescriptionComponent implements OnInit {
 
-  @Input() private user: User;
+  @Input() user: User;
 
   constructor() { }
 

@@ -3,6 +3,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Category} from '../../model/category';
 import {CategoriesService} from '../../services/categories.service';
 import {ContractType} from '../../enumeration/contract-type';
+import {JobOffersService} from '../../services/job-offers.service';
+import {JobOffer} from '../../model/job-offer';
+import {Router} from '@angular/router';
+import {Enterprise} from '../../model/enterprise';
+import {Coordinate} from '../../model/coordinate';
+import {Util} from '../../model/util';
+import {DEFAULT_COORDINATE} from '../../model/constants';
 
 @Component({
   selector: 'app-job-offer-creation',
@@ -12,25 +19,28 @@ import {ContractType} from '../../enumeration/contract-type';
 export class JobOfferCreationComponent implements OnInit {
   jobCreationForm: FormGroup;
   categories: Category[];
-  contractTypes = [ContractType.HALFTIME, ContractType.FULLTIME]
-  longitude = 5.5796662;
-  latitude = 50.6325574;
+  contractTypes: ContractType[] = [ContractType.HALFTIME, ContractType.FULLTIME];
+  longitude = DEFAULT_COORDINATE.longitude;
+  latitude = DEFAULT_COORDINATE.latitude;
   markerLongitude = this.longitude;
   markerLatitude = this.latitude;
   zoom = 10;
+  jobOffer = new JobOffer();
+  enterprise = new Enterprise();
 
   constructor(private formBuilder: FormBuilder,
-              private categoriesService: CategoriesService) {
+              private categoriesService: CategoriesService,
+              private jobOffersService: JobOffersService,
+              private router: Router) {
     this.jobCreationForm = formBuilder.group({
       title: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', Validators.required],
-      contractType: ['', Validators.required],
+      contractType: [this.contractTypes[0], Validators.required],
       contact: ['', Validators.required],
       place: ['', Validators.required],
       salaryMin: ['', [Validators.required, Validators.min(0)]],
       salaryMax: ['', [Validators.required, Validators.min(0)]],
-      enterprise: ['', Validators.required]
   });
   }
 
@@ -41,14 +51,6 @@ export class JobOfferCreationComponent implements OnInit {
   onMapClick($event) {
     this.markerLatitude = $event.coords.lat;
     this.markerLongitude = $event.coords.lng;
-  }
-
-  create() {
-
-  }
-
-  get description() {
-    return this.jobCreationForm.get('description');
   }
 
   insert(tagType: string) {
@@ -65,6 +67,55 @@ export class JobOfferCreationComponent implements OnInit {
     }
 
     this.description.setValue(this.description.value ? this.description.value + tagString : tagString);
+  }
+
+  setEnterprise($event) {
+    console.log($event);
+    this.enterprise = $event;
+  }
+
+  create() {
+    this.jobOffer.title = this.title.value;
+    this.jobOffer.salaryMin = this.salaryMin.value;
+    this.jobOffer.salaryMax = this.salaryMax.value;
+    this.jobOffer.description = this.description.value;
+    this.jobOffer.place = this.place.value;
+    this.jobOffer.contact = this.contact.value;
+    this.jobOffer.coordinate = new Coordinate();
+    this.jobOffer.coordinate.longitude = this.markerLongitude;
+    this.jobOffer.coordinate.latitude = this.markerLatitude;
+    this.jobOffer.enterprise = this.enterprise;
+    this.jobOffer.category = this.category.value;
+    this.jobOffer.contractType = this.contractType.value;
+    console.log(this.jobOffer);
+    this.jobOffersService.create(this.jobOffer).subscribe(
+      () => this.router.navigate(['/job-offers'])
+    );
+  }
+
+  get title() {
+    return this.jobCreationForm.get('title');
+  }
+  get category() {
+    return this.jobCreationForm.get('category');
+  }
+  get description() {
+    return this.jobCreationForm.get('description');
+  }
+  get contractType() {
+    return this.jobCreationForm.get('contractType');
+  }
+  get contact() {
+    return this.jobCreationForm.get('contact');
+  }
+  get place() {
+    return this.jobCreationForm.get('place');
+  }
+  get salaryMin() {
+    return this.jobCreationForm.get('salaryMin');
+  }
+  get salaryMax() {
+    return this.jobCreationForm.get('salaryMax');
   }
 
 }

@@ -12,8 +12,8 @@ import {Router} from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  private loginForm: FormGroup;
-  private failureMessage: string;
+  loginForm: FormGroup;
+  failureMessage: string;
 
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,

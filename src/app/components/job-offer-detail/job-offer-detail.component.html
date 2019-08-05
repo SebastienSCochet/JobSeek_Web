@@ -5,10 +5,9 @@
   </div>
   <div class="row">
     <div class="mb-5 col-6">
-      <label>Description</label>
-      <p [innerHTML]="jobOffer.description"></p>
+      <p [innerHTML]="jobOffer.description" class="mb-5"></p>
       <label>Type du contract</label>
-      <p>{{jobOffer.contractType}}</p>
+      <p>{{ jobOffer.contractType.toString() == 'HALFTIME' ? 'Temps partiel' : 'Temps plein' }}</p>
       <label>Catégorie</label>
       <p>{{jobOffer.category.label}}</p>
       <label>Lieu</label>

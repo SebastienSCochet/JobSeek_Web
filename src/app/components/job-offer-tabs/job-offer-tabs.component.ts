@@ -9,7 +9,7 @@ import {NavigationTab} from '../../enumeration/navigation-tab';
 export class JobOfferTabsComponent implements OnInit {
 
   @Output() private changeEvent = new EventEmitter();
-  private events = [NavigationTab.GRID, NavigationTab.MAP];
+  events = [NavigationTab.GRID, NavigationTab.MAP];
   private selectedTab: NavigationTab = NavigationTab.GRID;
 
   constructor() { }
