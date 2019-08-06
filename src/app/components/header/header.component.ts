@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
       if (this.user) {
         this.isAdmin = this.user.role === Role.ADMIN;
       }
-      this.imagesService.getDownloadFromStorage(user.avatarUrl);
+      this.imagesService.getDownloadFromStorage(user.avatarUrl).subscribe(url => this.avatarUrl = url);
     });
   }
 
