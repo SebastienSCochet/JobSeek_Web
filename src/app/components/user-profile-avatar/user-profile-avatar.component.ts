@@ -29,7 +29,7 @@ export class UserProfileAvatarComponent implements OnInit {
         return;
       }
 
-      const path = `avatar/${this.user.idUser}-${Date.now()}.${this.file.type.split('/')[1]}`;
+      const path = `avatar/${this.user.idUser}.${this.file.type.split('/')[1]}`;
       const customMetadata = {
         app: 'JobSeek',
         user: this.user.idUser.toString()
