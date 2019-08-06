@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ImagesService} from '../../services/images.service';
 import {User} from '../../model/user';
 import {UsersService} from '../../services/users.service';
@@ -12,6 +12,7 @@ export class UserProfileAvatarComponent implements OnInit {
   file: File;
   @Input() user: User;
   message: string;
+  @Output() avatarChange = new EventEmitter();
 
   constructor(private imagesService: ImagesService, private usersService: UsersService) { }
 
@@ -28,7 +29,7 @@ export class UserProfileAvatarComponent implements OnInit {
         return;
       }
 
-      const path = `avatar/${this.user.idUser}.${this.file.type.split('/')[1]}`;
+      const path = `avatar/${this.user.idUser}-${Date.now()}.${this.file.type.split('/')[1]}`;
       const customMetadata = {
         app: 'JobSeek',
         user: this.user.idUser.toString()
@@ -38,10 +39,11 @@ export class UserProfileAvatarComponent implements OnInit {
 
       this.imagesService.uploadToStorage(path, this.file, customMetadata).then(
         () => {
-          this.imagesService.getDownloadFromStorage(`avatar/${this.user.idUser}.jpeg`).subscribe((url) => {
-            this.user.avatarUrl = url;
+          this.imagesService.getDownloadFromStorage(path).subscribe((url) => {
+            this.user.avatarUrl = path;
             this.usersService.update(this.user.idUser, this.user).subscribe();
             this.message = 'Téléchargement terminé.';
+            this.avatarChange.emit(url);
           });
         }
       ).catch(() => this.message = 'Une erreur est survenue pendant le téléchargement.');

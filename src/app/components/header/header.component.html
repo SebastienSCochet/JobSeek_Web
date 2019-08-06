@@ -15,7 +15,7 @@
     <ul class="navbar-nav justify-content-end mr-auto">
       <li class="nav-item" [class.active]="check('/profile')">
         <a class="nav-link" routerLink="/profile">
-          <img *ngIf="user.avatarUrl" class="avatar" [src]="user.avatarUrl" alt="avatar"/>
+          <img *ngIf="user.avatarUrl" class="avatar" [src]="avatarUrl" alt="avatar"/>
           <img *ngIf="!user.avatarUrl" class="avatar" src="assets/default.png" alt="avatar"/>
           {{ user.firstname + ' ' + user.lastname }}</a>
 

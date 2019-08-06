@@ -3,6 +3,7 @@ import {User} from '../../model/user';
 import {UsersService} from '../../services/users.service';
 import {Role} from '../../model/role';
 import {Location} from '@angular/common';
+import {ImagesService} from "../../services/images.service";
 
 @Component({
   selector: 'app-header',
@@ -14,9 +15,11 @@ export class HeaderComponent implements OnInit {
   @Input() title: string;
   user: User;
   isAdmin: boolean;
+  avatarUrl: string;
 
   constructor(private location: Location,
-              private usersService: UsersService) {
+              private usersService: UsersService,
+              private imagesService: ImagesService) {
   }
 
   ngOnInit() {
@@ -29,6 +32,7 @@ export class HeaderComponent implements OnInit {
       if (this.user) {
         this.isAdmin = this.user.role === Role.ADMIN;
       }
+      this.imagesService.getDownloadFromStorage(user.avatarUrl);
     });
   }
 
