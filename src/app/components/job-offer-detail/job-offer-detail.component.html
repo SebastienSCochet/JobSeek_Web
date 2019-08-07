@@ -1,6 +1,6 @@
 <div class="container" *ngIf="jobOffer">
   <div class="border enterprise-box row mb-5">
-    <a class="col-4" routerLink="/enterprises/{{jobOffer.enterprise.idEnterprise}}"><img class="col-12" src="{{ jobOffer.enterprise.logoUrl }}" [title]="jobOffer.enterprise.name" [alt]="jobOffer.enterprise.name"></a>
+    <a class="col-4" routerLink="/enterprises/{{jobOffer.enterprise.idEnterprise}}"><img class="col-12" src="{{ logoUrl }}" [title]="jobOffer.enterprise.name" [alt]="jobOffer.enterprise.name"></a>
     <h2 class="col-8  my-3">{{jobOffer.title}}</h2>
   </div>
   <div class="row">

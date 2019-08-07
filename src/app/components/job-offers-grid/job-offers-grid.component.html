@@ -1,12 +1,5 @@
 <div class="d-flex flex-row flex-wrap justify-content-around align-content-start align-items-start">
   <div class="offer-box border" *ngFor="let offer of jobOffers">
-    <img [src]="offer.enterprise.logoUrl" [alt]="offer.enterprise.name" />
-    <ul>
-      <li><h3>{{offer.title}}</h3></li>
-      <li><b>Entreprise</b> : <b><a routerLink="/enterprises/{{offer.enterprise.idEnterprise}}">{{offer.enterprise.name}}</a></b></li>
-      <li><b>Salaire</b> : {{offer.salaryMin}} € - {{offer.salaryMax}} €</li>
-      <li><b>Type de contract</b> : {{offer.contractType.toString() == 'HALFTIME' ? 'Temps partiel' : 'Temps plein'}}</li>
-    </ul>
-    <button class="btn btn-info btn-block" (click)="detail(offer.idJobOffer)">Détails</button>
+    <app-job-offer-box [offer]="offer"></app-job-offer-box>
   </div>
 </div>

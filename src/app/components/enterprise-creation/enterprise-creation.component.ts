@@ -67,7 +67,7 @@ export class EnterpriseCreationComponent implements OnInit {
           this.enterprise.address.city = this.city.value;
           this.enterprise.address.postalCode = this.postalCode.value;
           this.enterprise.address.country = this.country.value;
-          this.enterprise.logoUrl = url;
+          this.enterprise.logoUrl = path;
           this.enterprisesService.save(this.enterprise).subscribe(e => {
             this.enterprise = e;
             this.onEnterpriseCreated.emit(e);

@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {JobOffer} from '../../model/job-offer';
 import {Router} from '@angular/router';
+import {ImagesService} from "../../services/images.service";
 
 @Component({
   selector: 'app-job-offers-grid',
@@ -11,12 +12,8 @@ export class JobOffersGridComponent implements OnInit {
 
   @Input() jobOffers: JobOffer[];
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  detail(idJobOffer: number) {
-    this.router.navigate([`/job-offers/${idJobOffer}`]);
   }
 }

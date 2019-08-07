@@ -30,6 +30,7 @@ import { JobOfferCreationComponent } from './components/job-offer-creation/job-o
 import { EnterpriseSelectionComponent } from './components/enterprise-selection/enterprise-selection.component';
 import {AutocompleteModule} from 'ng2-input-autocomplete';
 import { EnterpriseCreationComponent } from './components/enterprise-creation/enterprise-creation.component';
+import { JobOfferBoxComponent } from './components/job-offer-box/job-offer-box.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { EnterpriseCreationComponent } from './components/enterprise-creation/en
     JobOfferCreationComponent,
     EnterpriseSelectionComponent,
     EnterpriseCreationComponent,
+    JobOfferBoxComponent,
   ],
   imports: [
     BrowserModule,
