@@ -27,6 +27,9 @@ export class UserProfileAvatarComponent implements OnInit {
       if (this.file.type.split('/')[0] !== 'image') {
         alert('Le type de fichier ne correspond pas.');
         return;
+      } else if (this.file.size > 1024 * 1024 * 5) {
+        this.message = 'La taille de l\'image ne peut dépasser 5Mo.';
+        return;
       }
 
       const path = `avatar/${this.user.idUser}.${this.file.type.split('/')[1]}`;

@@ -44,6 +44,9 @@ export class EnterpriseCreationComponent implements OnInit {
     if (this.file.type.split('/')[0] !== 'image') {
       this.message = '<div class="alert alert-danger">Le type de fichier ne correspond pas.</div>';
       return;
+    } else if (this.file.size > 1024 * 1024 * 5) {
+      this.message = '<div class="alert alert-danger">La taille du logo ne peut dépasser 5Mo.</div>';
+      return;
     }
 
     const ext = this.file.type.split('/')[1];
