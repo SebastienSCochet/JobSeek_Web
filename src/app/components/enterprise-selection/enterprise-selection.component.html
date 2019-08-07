@@ -16,7 +16,7 @@
   </div>
 
   <div class="row my-4" *ngIf="selectedEnterprise">
-    <img class="enterpriseLogo ml-3" [src]="selectedEnterprise.logoUrl" alt="Logo de l'entreprise"/>
+    <img class="enterpriseLogo ml-3" [src]="logoUrl" alt="Logo de l'entreprise"/>
     <p class="ml-2"><b>Nom</b> : {{selectedEnterprise.name}}<br/>{{selectedEnterprise.description}}</p>
   </div>
 
