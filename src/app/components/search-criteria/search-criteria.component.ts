@@ -32,6 +32,10 @@ export class SearchCriteriaComponent implements OnInit {
     });
   }
 
+  /**
+   * Get the user's location to set the user coordinates.
+   * Set the form with user's preferences values
+   */
   ngOnInit() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
@@ -39,6 +43,7 @@ export class SearchCriteriaComponent implements OnInit {
         this.userCoordinate.longitude = position.coords.longitude;
       });
     }
+
 
     this.categoriesService.findAll().subscribe(allCategories => {
       this.categories = allCategories;
@@ -51,6 +56,22 @@ export class SearchCriteriaComponent implements OnInit {
       });
     });
   }
+
+  /**
+   * Emit a search object to the parent component
+   */
+  search() {
+    this.searchEvent.emit(new Search(this.keyword.value, this.enterprise.value, {
+      idPreference: this.userPreference.idPreference,
+      category: this.category.value,
+      distanceMax: this.distance.value,
+      salaryMin: this.salary.value,
+    }, this.userCoordinate));
+  }
+
+  /**
+   * Form items
+   */
 
   get category() {
     return this.criteriaForm.get('category');
@@ -68,12 +89,4 @@ export class SearchCriteriaComponent implements OnInit {
     return this.criteriaForm.get('salary');
   }
 
-  search() {
-    this.searchEvent.emit(new Search(this.keyword.value, this.enterprise.value, {
-      idPreference: this.userPreference.idPreference,
-      category: this.category.value,
-      distanceMax: this.distance.value,
-      salaryMin: this.salary.value,
-    }, this.userCoordinate));
-  }
 }

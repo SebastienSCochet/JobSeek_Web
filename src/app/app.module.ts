@@ -63,11 +63,14 @@ import { JobOfferBoxComponent } from './components/job-offer-box/job-offer-box.c
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    // For Google Maps element
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyB9slGgu1ys6hV7unhO29KuIw6a6Br1xt4'
     }),
+    // For Firebase Storage
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    // For autocomplete component
     AutocompleteModule.forRoot()
   ],
   providers: [

@@ -74,6 +74,9 @@ export class JobOfferCreationComponent implements OnInit {
     this.enterprise = $event;
   }
 
+  /**
+   * Create the job offer with the form data then redirect to job seek component
+   */
   create() {
     this.jobOffer.title = this.title.value;
     this.jobOffer.salaryMin = this.salaryMin.value;
@@ -87,11 +90,14 @@ export class JobOfferCreationComponent implements OnInit {
     this.jobOffer.enterprise = this.enterprise;
     this.jobOffer.category = this.category.value;
     this.jobOffer.contractType = this.contractType.value;
-    console.log(this.jobOffer);
     this.jobOffersService.create(this.jobOffer).subscribe(
       () => this.router.navigate(['/job-offers'])
     );
   }
+
+  /**
+   * Form elements
+   */
 
   get title() {
     return this.jobCreationForm.get('title');

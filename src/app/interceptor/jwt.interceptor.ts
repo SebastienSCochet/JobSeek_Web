@@ -8,6 +8,11 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(private authService: AuthenticationService) {}
 
+  /**
+   * Intercept HTTP request than set the Authorization header to rethrow it
+   * @param request : HTTP request
+   * @param next : HTTP Handler
+   */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
       const token: string = this.authService.getToken()
       if (token) {

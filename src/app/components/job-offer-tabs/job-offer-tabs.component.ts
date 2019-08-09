@@ -18,11 +18,19 @@ export class JobOfferTabsComponent implements OnInit {
 
   }
 
+  /**
+   * Change the selected tab
+   * @param tab : selected tab
+   */
   changeTab(tab: NavigationTab) {
     this.selectedTab = tab;
     this.changeEvent.emit(tab);
   }
 
+  /**
+   * Return true if the navigation tab is active
+   * @param navigationTab tab
+   */
   isActive(navigationTab: NavigationTab): boolean {
     return this.selectedTab === navigationTab;
   }

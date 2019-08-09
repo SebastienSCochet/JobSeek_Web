@@ -1,7 +1,5 @@
 <form class="border ml-5 mr-5 mb-5" (ngSubmit)="search()">
   <div [formGroup]="criteriaForm" class="form-group">
-    <button type="submit" class="mb-4 btn btn-block btn-primary">Rechercher</button>
-
     <label for="keyword">Mots-clés</label>
     <input type="text" class="form-control" id="keyword" name="keyword" formControlName="keyword"/>
 
@@ -21,5 +19,7 @@
     <select id="category" class="form-control" name="category" formControlName="category">
       <option *ngFor="let category of categories" [ngValue]="category">{{ category.label }}</option>
     </select>
+
+    <button type="submit" class="mt-4 btn btn-block btn-primary">Rechercher</button>
   </div>
 </form>

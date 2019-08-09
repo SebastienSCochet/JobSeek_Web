@@ -11,10 +11,13 @@ export class CoordinatesService {
 
   constructor(private http: HttpClient) {}
 
-  saveCoordinate(coordinate: Coordinate): Observable<Coordinate> {
-    return this.http.post<Coordinate>(`${REST_DOMAIN}/coordinates`, coordinate);
-  }
-
+  /**
+   * Update the coordinate of the user
+   *
+   * @param userDetails user retrieve from Authorization
+   * @param coordinate  coordinate of the user
+   * @return the updated coordinate
+   */
   updateCoordinate(coordinate: Coordinate) {
     return this.http.put<Coordinate>(`${REST_DOMAIN}/coordinates`, coordinate);
   }

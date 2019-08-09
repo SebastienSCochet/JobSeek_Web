@@ -19,6 +19,9 @@ export class LoginComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private router: Router) { }
 
+  /**
+   * Init the react form
+   */
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', [
@@ -31,6 +34,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Connect the user or show a message based on the response status
+   */
   connect() {
     if (this.email.value && this.password.value) {
       const credentials: LoginRequest = new LoginRequest(this.email.value, this.password.value);
@@ -57,6 +63,10 @@ export class LoginComponent implements OnInit {
         );
     }
   }
+
+  /**
+   * Form input
+   */
 
   get email() {
     return this.loginForm.get('email');

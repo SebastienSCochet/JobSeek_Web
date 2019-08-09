@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate {
               private router: Router) {}
 
   /**
-   * Permet de définir la condition d'accès être identifié pour l'accès à une route.
+   * Get whether the condition to access a component is true or false
    */
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
     return this.authService.isConnected()
@@ -24,11 +24,5 @@ export class AuthGuard implements CanActivate {
           return false;
         }
       }));
-
-    const connected = this.authService.isConnected();
-    if (!connected) {
-      this.router.navigate(['/login']);
-    }
-    return connected;
   }
 }

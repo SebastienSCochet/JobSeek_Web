@@ -20,26 +20,32 @@ export class EnterpriseCreationComponent implements OnInit {
   enterprise = new Enterprise();
   @Output() onEnterpriseCreated = new EventEmitter();
 
+
   constructor(private formBuilder: FormBuilder,
               private enterprisesService: EnterprisesService,
               private imagesService: ImagesService) {
     this.enterprise = new Enterprise();
     this.enterprise.address = new Address();
 
+    // Initialize the form
     this.enterpriseForm = this.formBuilder.group({
       name: ['', Validators.required, Validators.maxLength(100)],
-      description : ['', [Validators.required, Validators.maxLength(500)]],
-      logoUrl : ['', Validators.required],
-      street : ['', Validators.required],
-      number : ['', Validators.required],
-      postalCode : ['', Validators.required],
-      city : ['', Validators.required],
-      country : ['', Validators.required]
+      description: ['', [Validators.required, Validators.maxLength(500)]],
+      logoUrl: ['', Validators.required],
+      street: ['', Validators.required],
+      number: ['', Validators.required],
+      postalCode: ['', Validators.required],
+      city: ['', Validators.required],
+      country: ['', Validators.required]
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
+  /**
+   * Create the enterprise with the specified values
+   */
   create() {
     if (this.file.type.split('/')[0] !== 'image') {
       this.message = '<div class="alert alert-danger">Le type de fichier ne correspond pas.</div>';
@@ -84,9 +90,17 @@ export class EnterpriseCreationComponent implements OnInit {
     ).catch(() => this.message = 'Une erreur est survenue pendant le téléchargement.');
   }
 
+  /**
+   * Set the enterprise logo
+   * @param event : FileList
+   */
   setFile(event: FileList) {
     this.file = event.item(0);
   }
+
+  /**
+   * Form items
+   */
 
   get name() {
     return this.enterpriseForm.get('name');

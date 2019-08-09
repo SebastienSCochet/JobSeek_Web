@@ -27,6 +27,9 @@ export class JobOfferDetailComponent implements OnInit {
     this.usersService.getConnectedUser().subscribe(u => this.isAdmin = u.role === Role.ADMIN );
   }
 
+  /**
+   * Get the offer based on the id in the navigation path and also retrieve the logo
+   */
   getOffer() {
     const id: number = +this.route.snapshot.paramMap.get('idJobOffer');
     this.jobOffersService.findOfferById(id).subscribe(offer => {
@@ -37,6 +40,9 @@ export class JobOfferDetailComponent implements OnInit {
     });
   }
 
+  /**
+   * Delete the job offer and redirect to job seek component
+   */
   delete() {
     this.jobOffersService.deleteById(this.jobOffer.idJobOffer).subscribe(
       () => this.router.navigate(['/job-offers'])

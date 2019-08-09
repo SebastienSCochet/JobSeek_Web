@@ -18,8 +18,6 @@ import {COUNTRIES} from '../../model/constants';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-
-
   signUpForm: FormGroup;
   private user: User;
   categoriesAvailable: Category[];
@@ -32,6 +30,9 @@ export class SignUpComponent implements OnInit {
               private formBuilder: FormBuilder,
               private router: Router) { }
 
+  /**
+   * Init the form and the user
+   */
   ngOnInit() {
     this.user = new User();
     this.user.address = new Address();
@@ -79,6 +80,10 @@ export class SignUpComponent implements OnInit {
       ]]
     });
   }
+
+  /**
+   * Form elements
+   */
 
   get firstname() {
     return this.signUpForm.get('firstname');

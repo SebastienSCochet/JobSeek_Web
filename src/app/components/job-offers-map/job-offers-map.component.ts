@@ -21,6 +21,10 @@ export class JobOffersMapComponent implements OnInit {
 
   }
 
+  /**
+   * Method called when the user click on a marker
+   * @param idJobOffer : selected job offer id
+   */
   viewDetail(idJobOffer: number) {
     this.router.navigate(['/job-offers', idJobOffer]);
   }

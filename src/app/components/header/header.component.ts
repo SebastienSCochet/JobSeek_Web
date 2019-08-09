@@ -26,6 +26,9 @@ export class HeaderComponent implements OnInit {
     this.retrieveUser();
   }
 
+  /**
+   * Init current user and avatar url
+   */
   retrieveUser() {
     this.usersService.getConnectedUser().subscribe(user => {
       this.user = user;
@@ -36,6 +39,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+
+  /**
+   * Check if the location is the actual one
+   * @param viewLocation
+   */
   check(viewLocation) {
     return viewLocation === this.location.path();
   }

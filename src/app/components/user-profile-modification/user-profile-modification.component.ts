@@ -20,6 +20,9 @@ export class UserProfileModificationComponent implements OnInit {
               private router: Router) {
   }
 
+  /**
+   * Init the form with the input user data.
+   */
   ngOnInit() {
     if (this.user) {
       this.personalInfoForm = this.formBuilder.group({
@@ -37,6 +40,10 @@ export class UserProfileModificationComponent implements OnInit {
     }
   }
 
+  /**
+   * Set the user then send it to the parent component to be save then navigate to the profile
+   */
+
   save() {
     this.user.firstname = this.firstname.value;
     this.user.lastname = this.lastname.value;
@@ -53,6 +60,10 @@ export class UserProfileModificationComponent implements OnInit {
     this.personalInfoChange.emit(this.user);
     this.router.navigate(['/profile']);
   }
+
+  /**
+   * Form element
+   */
 
   get firstname() {
     return this.personalInfoForm.get('firstname');

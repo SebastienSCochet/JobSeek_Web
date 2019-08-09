@@ -11,19 +11,26 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Sign up the user
+   * @param user to sign in
+   */
   signUp(user: User): Observable<User> {
     return this.http.post<User>(`${REST_DOMAIN}/users`, user);
   }
 
+  /**
+   * Get current connected user
+   */
   getConnectedUser(): Observable<User> {
     return this.http.get<User>(`${REST_DOMAIN}/users`);
   }
 
-  getUserById(idUser: number): Observable<User> {
-    return this.http.get<User>(`${REST_DOMAIN}/users/${idUser}`);
-  }
-
-  update(idUser: number, user: User): Observable<User> {
-    return this.http.put<User>(`${REST_DOMAIN}/users/${idUser}`, user);
+  /**
+   * *Update the user data
+   * @param user to update
+   */
+  update(user: User): Observable<User> {
+    return this.http.put<User>(`${REST_DOMAIN}/users`, user);
   }
 }

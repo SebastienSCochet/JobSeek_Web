@@ -14,14 +14,20 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Try to authenticate, store the token in the local database and return the status code of the request.
-   * @param loginRequest credentials
-   * @return status code
+   * Authenticate the user
+   *
+   * @param loginRequest with the user's email and password
+   * @return the authentication token
    */
   public authenticate(loginRequest: LoginRequest): Observable<HttpResponse<LoginResponse>> {
     return this.http.post<LoginResponse>(`${REST_DOMAIN}/auth/login`, loginRequest, {observe: 'response'});
   }
 
+  /**
+   * Let know if the user is connected
+   *
+   * @return true if token is valid, or else false.
+   */
   public isConnected(): Observable<boolean> {
     let token = localStorage.getItem('token');
     if (token != null) {
@@ -32,12 +38,18 @@ export class AuthenticationService {
     }
   }
 
+  /**
+   * Disconnect the user
+   */
   public disconnect() {
     localStorage.removeItem('token');
   }
 
 
-  getToken(): string {
+  /**
+   * Retrieve the token from local storage
+   */
+  public getToken(): string {
     return localStorage.getItem('token');
   }
 }

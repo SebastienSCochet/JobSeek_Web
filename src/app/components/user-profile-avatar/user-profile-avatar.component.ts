@@ -14,7 +14,8 @@ export class UserProfileAvatarComponent implements OnInit {
   message: string;
   @Output() avatarChange = new EventEmitter();
 
-  constructor(private imagesService: ImagesService, private usersService: UsersService) { }
+  constructor(private imagesService: ImagesService,
+              private usersService: UsersService) { }
 
   ngOnInit() {}
 
@@ -22,6 +23,11 @@ export class UserProfileAvatarComponent implements OnInit {
     this.file = event.item(0);
   }
 
+  /**
+   *  Method triggered by the update button
+   *  Upload the selected file to the Firebase Storage with a path "avatar/${user.id}.${fileExt}"
+   *  Then get the download Url to emit it to the parent component (which will update the profile picture)
+   */
   startUpload() {
     if (this.file) {
       if (this.file.type.split('/')[0] !== 'image') {
@@ -44,7 +50,7 @@ export class UserProfileAvatarComponent implements OnInit {
         () => {
           this.imagesService.getDownloadFromStorage(path).subscribe((url) => {
             this.user.avatarUrl = path;
-            this.usersService.update(this.user.idUser, this.user).subscribe();
+            this.usersService.update(this.user).subscribe();
             this.message = 'Téléchargement terminé.';
             this.avatarChange.emit(url);
           });

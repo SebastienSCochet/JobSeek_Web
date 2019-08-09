@@ -4,7 +4,7 @@
     <h2 class="col-8  my-3">{{jobOffer.title}}</h2>
   </div>
   <div class="row">
-    <div class="mb-5 col-6">
+    <div class="mb-5 col-lg-6 col-sm-12">
       <p [innerHTML]="jobOffer.description" class="mb-5"></p>
       <label>Type du contract</label>
       <p>{{ jobOffer.contractType.toString() == 'HALFTIME' ? 'Temps partiel' : 'Temps plein' }}</p>
@@ -19,7 +19,7 @@
       <label>Date de publication</label>
       <p>{{jobOffer.publishDate | date:'dd/MM/yyy' }}</p>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-sm-12">
       <agm-map [latitude]="jobOffer.coordinate.latitude" [longitude]="jobOffer.coordinate.longitude" [zoom]="15">
         <agm-marker [latitude]="jobOffer.coordinate.latitude" [longitude]="jobOffer.coordinate.longitude" animation="BOUNCE" [label]="jobOffer.place"></agm-marker>
       </agm-map>
