@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
           response => {
             if (response.body.token) {
               localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
+              this.authenticationService.announceSuccessfulLogin();
               this.router.navigate(['/job-offers']);
             }
           }, error => {

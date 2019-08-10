@@ -3,7 +3,8 @@ import {User} from '../../model/user';
 import {UsersService} from '../../services/users.service';
 import {Role} from '../../model/role';
 import {Location} from '@angular/common';
-import {ImagesService} from "../../services/images.service";
+import {ImagesService} from '../../services/images.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -19,7 +20,9 @@ export class HeaderComponent implements OnInit {
 
   constructor(private location: Location,
               private usersService: UsersService,
-              private imagesService: ImagesService) {
+              private imagesService: ImagesService,
+              private authService: AuthenticationService) {
+    this.authService.onLoginSuccess.subscribe(() => this.retrieveUser());
   }
 
   ngOnInit() {

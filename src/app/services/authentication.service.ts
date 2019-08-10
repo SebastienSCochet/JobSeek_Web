@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {LoginRequest} from '../payload/login-request';
 import {REST_DOMAIN} from '../model/constants';
 import {LoginResponse} from '../payload/login-response';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 
 
 @Injectable({
@@ -11,7 +11,10 @@ import {Observable, of} from 'rxjs';
 })
 export class AuthenticationService {
 
-  constructor(private http: HttpClient) {}
+  private loginSuccessEvent = new Subject<object>();
+
+  constructor(private http: HttpClient) {
+  }
 
   /**
    * Authenticate the user
@@ -51,5 +54,13 @@ export class AuthenticationService {
    */
   public getToken(): string {
     return localStorage.getItem('token');
+  }
+
+  public announceSuccessfulLogin(object: object = null) {
+    this.loginSuccessEvent.next(object);
+  }
+
+  get onLoginSuccess() {
+    return this.loginSuccessEvent.asObservable();
   }
 }
