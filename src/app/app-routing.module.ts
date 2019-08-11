@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './component/login/login.component';
 import {AuthGuard} from './guard/auth.guard';
-import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {SignUpComponent} from './components/sign-up/sign-up.component';
-import {JobSeekComponent} from './components/job-seek/job-seek.component';
-import {JobOfferDetailComponent} from './components/job-offer-detail/job-offer-detail.component';
-import {UserProfileComponent} from './components/user-profile/user-profile.component';
-import {EnterpriseDetailComponent} from './components/enterprise-detail/enterprise-detail.component';
-import {JobOfferCreationComponent} from './components/job-offer-creation/job-offer-creation.component';
-import {EnterpriseCreationComponent} from './components/enterprise-creation/enterprise-creation.component';
+import {PageNotFoundComponent} from './component/page-not-found/page-not-found.component';
+import {SignUpComponent} from './component/sign-up/sign-up.component';
+import {JobSeekComponent} from './component/job-seek/job-seek.component';
+import {JobOfferDetailComponent} from './component/job-offer-detail/job-offer-detail.component';
+import {UserProfileComponent} from './component/user-profile/user-profile.component';
+import {EnterpriseDetailComponent} from './component/enterprise-detail/enterprise-detail.component';
+import {JobOfferCreationComponent} from './component/job-offer-creation/job-offer-creation.component';
+import {EnterpriseCreationComponent} from './component/enterprise-creation/enterprise-creation.component';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/job-offers' },

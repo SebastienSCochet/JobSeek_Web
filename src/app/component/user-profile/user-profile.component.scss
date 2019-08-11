@@ -1,0 +1,29 @@
+.user-avatar {
+  border: solid 5px;
+}
+
+img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 5px;
+}
+
+#display-name {
+  text-align: center;
+  font-size: 24px;
+}
+
+#edit-label {
+  text-align: center;
+  font-size: 24px;
+}
+
+.btn-back {
+  margin: 20px 00px 20px 20px;
+}
+
+.btn-logout:hover{
+  border-color: #dc3545;
+  background-color: #dc3545;
+  color: #fff;
+}
