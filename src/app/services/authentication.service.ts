@@ -12,6 +12,7 @@ import {Observable, of, Subject} from 'rxjs';
 export class AuthenticationService {
 
   private loginSuccessEvent = new Subject<object>();
+  private disconnectEvent = new Subject<object>();
 
   constructor(private http: HttpClient) {
   }
@@ -46,6 +47,7 @@ export class AuthenticationService {
    */
   public disconnect() {
     localStorage.removeItem('token');
+    this.disconnectEvent.next(null);
   }
 
 
@@ -62,5 +64,9 @@ export class AuthenticationService {
 
   get onLoginSuccess() {
     return this.loginSuccessEvent.asObservable();
+  }
+
+  get onDisconnect() {
+    return this.disconnectEvent.asObservable();
   }
 }

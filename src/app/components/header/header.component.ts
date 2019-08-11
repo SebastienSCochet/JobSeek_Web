@@ -23,6 +23,11 @@ export class HeaderComponent implements OnInit {
               private imagesService: ImagesService,
               private authService: AuthenticationService) {
     this.authService.onLoginSuccess.subscribe(() => this.retrieveUser());
+    this.authService.onDisconnect.subscribe(() => {
+      this.user = null;
+      this.isAdmin = false;
+      this.avatarUrl = null;
+    });
   }
 
   ngOnInit() {
