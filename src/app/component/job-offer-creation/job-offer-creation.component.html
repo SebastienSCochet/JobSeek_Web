@@ -76,6 +76,7 @@
     <app-enterprise-selection [inputTouched]="!enterprise && this.jobCreationForm.valid" (onEnterpriseSelected)="setEnterprise($event)"></app-enterprise-selection>
 
     <label>Coordonnées de l'emploi</label>
+    <p class="small">Veuillez sélectionner un point sur la carte</p>
     <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="onMapClick($event)">
       <agm-marker [longitude]="markerLongitude" [latitude]="markerLatitude"></agm-marker>
     </agm-map>

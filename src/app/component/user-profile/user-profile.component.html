@@ -3,7 +3,6 @@
     <div class="col-sm-12 col-md-4 col-lg-4">
       <div class="border p-2">
         <img *ngIf="user.avatarUrl" class="d-block m-auto" [src]="avatarUrl" alt="Photo de {{user.firstname + ' ' + user.lastname}}" />
-        <img *ngIf="!user.avatarUrl" class="d-block m-auto" src="assets/default.png" alt="Photo de {{user.firstname + ' ' + user.lastname}}" />
         <p id="display-name">{{user.firstname + ' ' + user.lastname}}</p>
       </div>
       <div class="border mt-3 p-2">

@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
       this.isAdmin = false;
       this.avatarUrl = null;
     });
+    this.imagesService.onAvatarChange.subscribe((url) => this.avatarUrl = url);
   }
 
   ngOnInit() {

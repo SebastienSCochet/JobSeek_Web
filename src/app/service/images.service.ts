@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import {AngularFireStorage, AngularFireUploadTask} from '@angular/fire/storage';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImagesService {
+
+  private avatarChangeEvents = new Subject<string>();
 
   constructor(private storage: AngularFireStorage) { }
 
@@ -24,5 +27,13 @@ export class ImagesService {
    */
   public getDownloadFromStorage(path: string) {
     return this.storage.ref(path).getDownloadURL();
+  }
+
+  public announceAvatarChange(url) {
+    this.avatarChangeEvents.next(url);
+  }
+
+  get onAvatarChange() {
+    return this.avatarChangeEvents.asObservable();
   }
 }

@@ -54,8 +54,6 @@
         <div *ngIf="message" class="alert alert-light" [innerHTML]="message"></div>
       </div>
 
-      <img *ngIf="enterprise.logoUrl" [src]="enterprise.logoUrl" class="m-auto" alt="Logo de l'entreprise"/>
-
       <button class="btn btn-light btn-block mt-4" [disabled]="enterpriseForm.invalid || (desc.textLength === 0) || !file.files" (click)="create()">
         Ajouter l'entreprise
       </button>

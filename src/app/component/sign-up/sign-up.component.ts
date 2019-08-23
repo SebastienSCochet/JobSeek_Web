@@ -149,6 +149,7 @@ export class SignUpComponent implements OnInit {
             localStorage.setItem('token', `${response.body.tokenType} ${response.body.token}`);
             this.router.navigate(['/job-offers']);
           }
+          this.authService.announceSuccessfulLogin(null);
         });
     });
   }

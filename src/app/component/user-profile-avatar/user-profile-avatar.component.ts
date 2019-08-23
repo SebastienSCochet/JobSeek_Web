@@ -52,6 +52,7 @@ export class UserProfileAvatarComponent implements OnInit {
             this.user.avatarUrl = path;
             this.usersService.update(this.user).subscribe();
             this.message = 'Téléchargement terminé.';
+            this.imagesService.announceAvatarChange(url);
             this.avatarChange.emit(url);
           });
         }

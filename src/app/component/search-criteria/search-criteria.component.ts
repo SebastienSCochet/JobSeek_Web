@@ -44,7 +44,6 @@ export class SearchCriteriaComponent implements OnInit {
       });
     }
 
-
     this.categoriesService.findAll().subscribe(allCategories => {
       this.categories = allCategories;
       this.userPreferenceObs.subscribe(userPreference => {
